@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fontiran Studio</title>
+    <link rel="stylesheet" href="css/fontface.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/tokens/-tokens.css">
+    <link rel="stylesheet" href="css/layouts/-layouts.css">
+    <link rel="stylesheet" href="css/components/-components.css">
+    <link rel="stylesheet" href="css/pages/-pages.css">
+    <link rel="stylesheet" href="css/vendor/tippy.js@6.3.7.scale.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body class="page-canvas">
+    <div class="app" id="app">
+        <section class="canvas" id="canvas"></section>
+        <section class="menu" id="menu"></section>
+        <section class="sidebar" id="sidebar"></section>
+        <section class="toolbar" id="toolbar">
+            <div class="toolbar-inner">
+                <div class="toolbar-stream toolbar-stream-main">
+                    <button class="toolbar-item toolbar-item-move is-active" id="tool-move" data-tippy-hint-template="hint-tool-move">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M4.83032 6.89883C4.29926 5.5933 5.59368 4.28829 6.90356 4.80899L19.2571 9.72012C20.6283 10.2656 20.5926 12.219 19.2024 12.7143L14.426 14.4145L12.8489 19.1303C12.3777 20.5382 10.4087 20.6011 9.84888 19.226L4.83032 6.89883Z" stroke="currentColor" stroke-width="1.2"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <button class="toolbar-item toolbar-item-hand" id="tool-hand" data-tippy-hint-template="hint-tool-hand">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M10.9078 6.14835V10.1004M10.9078 6.14835C10.9078 5.32987 10.2443 4.66635 9.4258 4.66635C8.60731 4.66635 7.9438 5.32987 7.9438 6.14835L7.94845 13.1664L6.46835 11.189C5.97788 10.5337 5.04909 10.4001 4.39383 10.8906C3.73857 11.381 3.60498 12.3098 4.09544 12.9651L6.46835 16.5917C7.19687 17.835 9.40109 20.3216 12.3898 20.3216C18.4166 20.3216 19.7998 15.6286 19.7998 13.0644V8.12435C19.7998 7.30587 19.1363 6.64235 18.3178 6.64235C17.4993 6.64235 16.8358 7.30587 16.8358 8.12435M10.9078 6.14835V5.16035C10.9078 4.34187 11.5713 3.67835 12.3898 3.67835C13.2083 3.67835 13.8718 4.34187 13.8718 5.16035V6.14835M13.8718 6.14835V10.1004M13.8718 6.14835C13.8718 5.32987 14.5353 4.66635 15.3538 4.66635C16.1723 4.66635 16.8358 5.32987 16.8358 6.14835V8.12435M16.8358 8.12435V10.1004" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <button class="toolbar-item toolbar-item-text" id="tool-text" data-tippy-hint-template="hint-tool-text">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M8 10.0625V8H12M16 10.0625V8H12M12 8V16M12 16H14.5M12 16H9.5M7 20H17C18.6569 20 20 18.6569 20 17V7C20 5.34315 18.6569 4 17 4H7C5.34315 4 4 5.34315 4 7V17C4 18.6569 5.34315 20 7 20Z" stroke="currentColor" stroke-width="1.2"/>
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-stream toolbar-stream-view">
+                    <button class="toolbar-item toolbar-item-zoom" id="tool-zoom" data-tippy-hint-template="hint-tool-zoom">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20.1003 20.1L16.0449 16.0482M7.50029 10.7667H10.767M10.767 10.7667H14.0336M10.767 10.7667V7.5M10.767 10.7667V14.0333M16.0449 16.0482C14.6938 17.3983 12.8279 18.2333 10.767 18.2333C6.64323 18.2333 3.30029 14.8904 3.30029 10.7667C3.30029 6.64293 6.64323 3.3 10.767 3.3C14.8907 3.3 18.2336 6.64293 18.2336 10.7667C18.2336 12.8295 17.3971 14.6969 16.0449 16.0482Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="input-control input-type-stepper zoom-stepper toolbar-zoom-stepper" id="zoom-stepper">
+                        <div class="input-stepper-wrapper">
+                            <button class="input-stepper-btn input-stepper-btn-decrement">-</button>
+                            <input class="input" id="canvas-zoom" type="number" value="100" min="1" max="100" step="0.1">
+                            <button class="input-stepper-btn input-stepper-btn-increment">+</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="toolbar-divider"></div>
+                <div class="toolbar-stream toolbar-stream-extras">
+                    <!-- is-login or is-logout -->
+                    <button class="toolbar-btn user-btn" id="user-btn" data-tippy-content="ورود به حساب کاربری">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.5 20.5625C19.5 18.437 19.5 17.3742 19.1183 16.5403C18.7171 15.6637 18.0269 14.951 17.1629 14.5211C16.3411 14.1121 15.2812 14 13.1497 14.0048L10.8495 14C8.71874 14 7.68278 14.1002 6.87116 14.495C5.97993 14.9285 5.2752 15.6548 4.86949 16.5579C4.50001 17.3803 4.50001 18.441 4.5 20.5624M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                    </button>
+                    <!-- disabled -->
+                    <button class="toolbar-btn export-btn" id="export-btn">
+                        <div class="icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M20 15.5V17.5C20 18.6046 19.1046 19.5 18 19.5H6C4.89543 19.5 4 18.6046 4 17.5V15.5M16 11.8125L12 15.8125L8 11.8125M12 15.8125V4.50003" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="text">Export</div>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="hint-tippy-templates" hidden>
+        <div id="hint-tool-move">
+            <div class="hint-tippy-wrapper hint-tool-move">
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Move</span>
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>V</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hint-tool-hand">
+            <div class="hint-tippy-wrapper hint-tool-hand">
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Hand</span>
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>H</kbd>
+                        </div>
+                        <span class="hint-tippy-or">or hold</span>
+                        <div class="hint-tippy-key">
+                            <kbd>Space</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hint-tool-text">
+            <div class="hint-tippy-wrapper hint-tool-text">
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Text</span>   
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>T</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="hint-tool-zoom">
+            <div class="hint-tippy-wrapper hint-tool-zoom">
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Zoom in</span>   
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>Ctrl</kbd>
+                        </div>
+                        <div class="hint-tippy-key">
+                            <kbd>+</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Zoom out</span>   
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>Ctrl</kbd>
+                        </div>
+                        <div class="hint-tippy-key">
+                            <kbd>-</kbd>
+                        </div>
+                    </div>
+                </div>
+                <div class="hint-tippy-item">
+                    <div class="hint-tippy-label">
+                        <span>Reset to 100%</span>   
+                    </div>
+                    <div class="hint-tippy-shortcuts">
+                        <div class="hint-tippy-key">
+                            <kbd>Ctrl</kbd>
+                        </div>
+                        <div class="hint-tippy-key">
+                            <kbd>0</kbd>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/vendor/popper.min@2.11.8.js"></script>
+    <script src="js/vendor/tippy-bundle.umd.min@6.3.7.js"></script>
+    <script src="js/tippy.js"></script>
+</body>
+</html>

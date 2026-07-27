@@ -1,0 +1,71 @@
+.tippy-box[data-theme~='hint-tippy'] {
+    background-color: var(--c-gray-900);
+    color: #fff;
+    border-radius: var(--br-sm);
+    box-shadow: none;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 500;
+}
+
+.tippy-box[data-theme~='hint-tippy'] .tippy-content {
+    padding: 8px;
+}
+
+.tippy-box[data-theme~='hint-tippy'] .tippy-arrow {
+    color: var(--c-gray-900);
+}
+
+.hint-tippy-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hint-tippy-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    white-space: nowrap;
+    min-width: 60px;
+}
+
+.hint-tippy-label {
+    color: #fff;
+}
+
+.hint-tippy-shortcuts {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.hint-tippy-key {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 20px;
+    padding: 0 5px;
+    height: 20px;
+    border-radius: var(--br-xs);
+    background-color: var(--c-gray-800);
+    box-shadow:
+    inset 0 0 0 1px hsla(0, 0%, 100%, 0.05),
+    inset 0 -1px 0 1px hsla(0, 0%, 100%, 0.1);
+    font-family: inherit;
+    font-size: 11px;
+    font-weight: 300;
+    flex-shrink: 0;
+}
+.hint-tippy-key:has(svg) {
+    padding: 0;
+
+}
+.hint-tippy-or {
+    color: var(--c-gray-500);
+    font-size: 10px;
+    font-weight: 300;
+}
+.hint-tool-zoom .hint-tippy-item {
+    gap: 24px;
+}

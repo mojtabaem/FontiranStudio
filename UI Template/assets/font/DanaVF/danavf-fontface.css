@@ -1,0 +1,8 @@
+@font-face {
+	font-family: dana-vf;
+	font-style: normal;
+	font-weight: 100 990;
+	font-variation-settings: 'wght' 100 990;
+	font-variation-settings: 'kash' 0 100;
+	src: url('DanaVF.woff2') format('woff2')
+}

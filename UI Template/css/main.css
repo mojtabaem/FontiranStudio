@@ -1,0 +1,6 @@
+html {
+    font-family: dana-vf, dana, sans-serif;
+}
+body {
+    background-color: var(--c-bg);
+}
