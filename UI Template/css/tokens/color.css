@@ -92,6 +92,13 @@
   --c-instagram: linear-gradient(270.06deg, #FCA759 0.06%, #E82D56 30.75%, #A22DB4 66.13%, #643DCE 99.94%);
 
 
+  /* Text */
+  --c-text: hsl(210, 40%, 8%);
+  --c-text-primary: hsl(210, 40%, 8%);
+  --c-text-secondary: hsl(210, 22%, 18%);
+  --c-text-tertiary: hsl(210, 14%, 36%);
+  --c-text-quaternary: hsl(210, 8%, 48%);
+
   /* produact tags colors */
   --c-tag-new: hsla(225, 86%, 58%, 0.9);
   --c-tag-new-border: hsla(225, 68%, 48%, 1);

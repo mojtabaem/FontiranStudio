@@ -44,7 +44,7 @@
     align-items: center;
     justify-content: center;
     transition: background-color 250ms ease-in-out;
-    color: var(--c-gray-900);
+    color: var(--c-text);
 }
 .toolbar-stream-main .toolbar-item:first-child {
     border-radius:
@@ -83,13 +83,30 @@
     align-items: center;
     justify-content: center;
     gap: 8px;
+    font-size: 15px;
+    color: var(--c-text);
     border: 1px solid var(--panel-border-color);
-    transition: background-color 250ms ease-in-out;
+    transition: all 250ms ease-in-out;
+}
+.toolbar-btn:hover,
+.toolbar-btn:focus {
+    background-color: var(--c-gray-100);
+}
+.toolbar-btn:disabled {
+    background-color: var(--c-gray-100);
+    opacity: 0.8;
+    cursor: not-allowed;
+}
+.toolbar-btn:disabled:hover,
+.toolbar-btn:disabled:focus {
+    background-color: var(--c-gray-100);
 }
 .toolbar-btn.export-btn {
     min-width: 90px;
-    padding: 0 12px;
-
+    padding: 0 16px 0 12px;
+}
+.toolbar-btn.export-btn .text {
+    padding-top: 2px;
 }
 .input-type-stepper.toolbar-zoom-stepper {
     --input-height: calc(var(--toolbar-item-size) - 4px);

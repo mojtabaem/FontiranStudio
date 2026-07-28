@@ -1,0 +1,167 @@
+/* 
+
+.ui-btn + classes
+
+.ui-btn-primary
+.ui-btn-secondary[default]
+.ui-btn-tertiary
+
+.ui-btn-size-sm
+.ui-btn-size-md[default]
+.ui-btn-size-lg
+
+.ui-btn-info[default]
+.ui-btn-danger
+.ui-btn-warning
+.ui-btn-success
+
+.is-active
+.is-disabled
+.is-preloading
+.is-processing
+
+*/
+:root {
+    --btn-size-sm-height: 30px;
+    --btn-height: 38px;
+    --btn-size-lg-height: 48px;
+
+    --btn-icon-size-sm: 20px;
+    --btn-icon-size: 24px;
+    --btn-icon-size-lg: 28px;
+
+    --btn-size-sm-border-radius: 8px;
+    --btn-border-radius: 10px;
+    --btn-size-lg-border-radius: 16px;
+
+    --btn-size-sm-padding: 6px;
+    --btn-padding: 12px;
+    --btn-size-lg-padding: 18px;
+
+    --btn-size-sm-gap: 4px;
+    --btn-gap: 8px;
+    --btn-size-lg-gap: 12px;
+
+    --btn-text-size-sm: 13px;
+    --btn-text-size: 15px;
+    --btn-text-size-lg: 17px;
+
+    --btn-border-color: todo;
+    --btn-danger-border-color: todo;
+    --btn-warning-border-color: todo;
+    --btn-success-border-color: todo;
+    --btn-primary-border-color: var(--c-gray-950);
+    --btn-primary-danger-border-color: todo;
+    --btn-primary-warning-border-color: todo;
+    --btn-primary-success-border-color: todo;
+
+    --btn-bg-color: todo;
+    --btn-danger-bg-color: todo;
+    --btn-warning-bg-color: todo;
+    --btn-success-bg-color: todo;
+    --btn-primary-bg-color: var(--c-gray-850);
+    --btn-primary-danger-bg-color: todo;
+    --btn-primary-warning-bg-color: todo;
+    --btn-primary-success-bg-color: todo;
+
+    --btn-fg-color: todo;
+    --btn-danger-fg-color: todo;
+    --btn-warning-fg-color: todo;
+    --btn-success-fg-color: todo;
+    --btn-primary-fg-color: #fff;
+    --btn-primary-danger-fg-color: todo;
+    --btn-primary-warning-fg-color: todo;
+    --btn-primary-success-fg-color: todo;
+    --btn-tertiary-fg-color: todo;
+    --btn-tertiary-danger-fg-color: todo;
+    --btn-tertiary-warning-fg-color: todo;
+    --btn-tertiary-success-fg-color: todo;
+
+    --btn-shadow: none;
+    --btn-primary-shadow: todo;
+    --btn-primary-danger-shadow: todo;
+    --btn-primary-warning-shadow: todo;
+    --btn-primary-success-shadow: todo;
+
+}
+.ui-btn.ui-btn-size-sm {
+    --btn-height: var(--btn-size-sm-height);
+    --btn-gap: var(--btn-size-sm-gap);
+    --btn-padding: var(--btn-size-sm-padding);
+    --btn-border-radius: var(--btn-size-sm-border-radius);
+    --btn-icon-size: var(--btn-icon-size-sm);
+    --btn-text-size: var(--btn-text-size-sm);
+}
+.ui-btn.ui-btn-size-lg {
+    --btn-height: var(--btn-size-lg-height);
+    --btn-gap: var(--btn-size-lg-gap);
+    --btn-padding: var(--btn-size-lg-padding);
+    --btn-border-radius: var(--btn-size-lg-border-radius);
+    --btn-icon-size: var(--btn-icon-size-lg);
+    --btn-text-size: var(--btn-text-size-lg);
+}
+.ui-btn.ui-btn-danger {
+
+}
+.ui-btn.ui-btn-warning {
+
+}
+.ui-btn.ui-btn-success {
+
+}
+.ui-btn.ui-btn-primary {
+    --btn-bg-color: var(--btn-primary-bg-color);
+    --btn-fg-color: var(--btn-primary-fg-color);
+    --btn-border-color: var(--btn-primary-border-color);
+}
+.ui-btn.ui-btn-primary.ui-btn-danger {
+    
+}
+.ui-btn.ui-btn-primary.ui-btn-warning {
+
+}
+.ui-btn.ui-btn-primary.ui-btn-success {
+
+}
+.ui-btn.ui-btn-tertiary {
+
+}
+.ui-btn.ui-btn-tertiary.ui-btn-danger {
+
+}
+.ui-btn.ui-btn-tertiary.ui-btn-warning {
+
+}
+.ui-btn.ui-btn-tertiary.ui-btn-success {
+
+}
+
+.ui-btn {
+    height: var(--btn-height);
+    width: fit-content;
+    min-width: var(--btn-height);
+    padding: 0 var(--btn-padding);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--btn-gap);
+    border-radius: var(--btn-border-radius);
+    border: 1px solid transparent;
+    border-color: var(--btn-border-color);
+    box-shadow: var(--btn-shadow);
+    background-color: var(--btn-bg-color);
+    color: var(--btn-fg-color);
+    font-size: var(--btn-text-size);
+}
+.ui-btn > .text {
+    padding-top: 2px;
+}
+.ui-btn-size-sm > .text {
+    padding-top: 1px;
+}
+.ui-btn-size-lg > .text {
+    padding-top: 4px;
+}
+.ui-btn > .icon {
+
+}

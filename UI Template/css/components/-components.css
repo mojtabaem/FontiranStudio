@@ -1,4 +1,6 @@
 @import "inputs/-inputs.css";
 @import "toolbar.css";
+@import "dialog.css";
 @import "hint-tippy.css";
 @import "default-tippy.css";
+@import "buttons.css";

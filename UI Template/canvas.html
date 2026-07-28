@@ -48,7 +48,7 @@
                     <button class="toolbar-item toolbar-item-zoom" id="tool-zoom" data-tippy-hint-template="hint-tool-zoom">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M20.1003 20.1L16.0449 16.0482M7.50029 10.7667H10.767M10.767 10.7667H14.0336M10.767 10.7667V7.5M10.767 10.7667V14.0333M16.0449 16.0482C14.6938 17.3983 12.8279 18.2333 10.767 18.2333C6.64323 18.2333 3.30029 14.8904 3.30029 10.7667C3.30029 6.64293 6.64323 3.3 10.767 3.3C14.8907 3.3 18.2336 6.64293 18.2336 10.7667C18.2336 12.8295 17.3971 14.6969 16.0449 16.0482Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19.4995 19.5L15.6372 15.6411M7.49951 10.6111H10.6106M10.6106 10.6111H13.7217M10.6106 10.6111V7.49997M10.6106 10.6111V13.7222M15.6372 15.6411C14.3505 16.927 12.5734 17.7222 10.6106 17.7222C6.68326 17.7222 3.49951 14.5385 3.49951 10.6111C3.49951 6.68372 6.68326 3.49997 10.6106 3.49997C14.538 3.49997 17.7217 6.68372 17.7217 10.6111C17.7217 12.5757 16.9251 14.3541 15.6372 15.6411Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                     </button>
@@ -63,26 +63,85 @@
                 <div class="toolbar-divider"></div>
                 <div class="toolbar-stream toolbar-stream-extras">
                     <!-- is-login or is-logout -->
-                    <button class="toolbar-btn user-btn" id="user-btn" data-tippy-content="ورود به حساب کاربری">
+                    <button class="toolbar-btn user-btn" id="user-btn" data-dialog-open="account-dialog" data-tippy-content="ورود به حساب کاربری">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M19.5 20.5625C19.5 18.437 19.5 17.3742 19.1183 16.5403C18.7171 15.6637 18.0269 14.951 17.1629 14.5211C16.3411 14.1121 15.2812 14 13.1497 14.0048L10.8495 14C8.71874 14 7.68278 14.1002 6.87116 14.495C5.97993 14.9285 5.2752 15.6548 4.86949 16.5579C4.50001 17.3803 4.50001 18.441 4.5 20.5624M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M19 20C19 18.0567 19 17.085 18.6438 16.3226C18.2693 15.5211 17.6251 14.8695 16.8187 14.4764C16.0517 14.1025 15.0625 14 13.073 14.0044L10.9262 14C8.93749 14 7.97059 14.0916 7.21309 14.4526C6.38127 14.8489 5.72352 15.5129 5.34486 16.3386C5.00001 17.0906 5.00001 18.0603 5 19.9999M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                     </button>
                     <!-- disabled -->
-                    <button class="toolbar-btn export-btn" id="export-btn">
+                    <button class="toolbar-btn export-btn" id="export-btn" data-dialog-open="export-dialog">
                         <div class="icon">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                <path d="M20 15.5V17.5C20 18.6046 19.1046 19.5 18 19.5H6C4.89543 19.5 4 18.6046 4 17.5V15.5M16 11.8125L12 15.8125L8 11.8125M12 15.8125V4.50003" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                                <path d="M19.5 15.5V17.5C19.5 18.6046 18.6046 19.5 17.5 19.5H6.5C5.39543 19.5 4.5 18.6046 4.5 17.5V15.5M16 11.8125L12 15.8125L8 11.8125M12 15.8125V4.50003" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
                             </svg>
                         </div>
-                        <div class="text">Export</div>
+                        <div class="text">دانلود</div>
                     </button>
                 </div>
             </div>
         </section>
     </div>
+
+    <!--
+      Account dialog — class names match Radix Dialog parts (see dialog.css).
+      Later with Radix: Dialog.Overlay.dialog-overlay, Dialog.Content.dialog-content, etc.
+    -->
+    <!-- <dialog class="dialog" id="account-dialog">
+        <div class="dialog-content">
+            <div class="dialog-header">
+                <button class="dialog-btn dialog-btn-close" type="button" data-dialog-close aria-label="بستن">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M6 18L12 12M12 12L18 6M12 12L6 6M12 12L18 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="dialog-body"></div>
+            <div class="dialog-footer"></div>
+        </div>
+    </dialog> -->
+
+    <!-- export dialog -->
+    <dialog class="dialog dialog-export" id="export-dialog">
+        <div class="dialog-panel">
+            <div class="dialog-content">
+                <div class="dialog-header">
+                    <button class="dialog-btn dialog-btn-close" type="button" data-dialog-close aria-label="بستن">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 18L12 12M12 12L18 6M12 12L6 6M12 12L18 18" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="dialog-header-title" style="display: none;">
+                        <div class="dialog-header-title-text">دانلود</div>
+                        <div class="dialog-header-title-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                <path d="M19.5 15.5V17.5C19.5 18.6046 18.6046 19.5 17.5 19.5H6.5C5.39543 19.5 4.5 18.6046 4.5 17.5V15.5M16 11.8125L12 15.8125L8 11.8125M12 15.8125V4.50003" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="dialog-body">
+                    <div class="dialog-export-content">
+                        <div class="dialog-export-header">
+                            <img src="assets/img/export-dialog-arrow.svg" class="dialog-export-arrow" alt="">
+                        </div>
+                        <div class="dialog-export-options"></div>
+                        <div class="dialog-export-preview"></div>
+                    </div>
+                </div>
+                <div class="dialog-footer">
+                    <button class="ui-btn ui-btn-primary btn-export-download" id="export-btn-download">
+                        <div class="text">دانلود</div>
+                    </button>
+                    <button class="ui-btn ui-btn-secondary btn-export-copy" id="export-btn-copy">
+                        <div class="text">کپی در کلیپبورد</div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
 
     <div id="hint-tippy-templates" hidden>
         <div id="hint-tool-move">
@@ -179,5 +238,6 @@
     <script src="js/vendor/popper.min@2.11.8.js"></script>
     <script src="js/vendor/tippy-bundle.umd.min@6.3.7.js"></script>
     <script src="js/tippy.js"></script>
+    <script src="js/dialog.js"></script>
 </body>
 </html>

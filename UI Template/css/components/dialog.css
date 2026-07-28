@@ -1,0 +1,175 @@
+/*
+  Dialog styles — class names match Radix Dialog parts so you can reuse this CSS later:
+
+  .dialog-overlay      →  Dialog.Overlay
+  .dialog-content      →  Dialog.Content
+  .dialog-title        →  Dialog.Title
+  .dialog-description  →  Dialog.Description
+  .dialog-close        →  Dialog.Close
+
+  Native <dialog> uses ::backdrop for the overlay. With Radix, put class="dialog-overlay"
+  on Dialog.Overlay instead (same visual rules below).
+*/
+
+:root {
+    --dialog-overlay-color: rgba(255, 255, 255, 0.2);
+    --dialog-width: 400px;
+    --dialog-radius: var(--br-xl);
+    --dialog-border-color: var(--panel-border-color);
+    --dialog-background-color: var(--panel-background-color);
+    --dialog-shadow: var(--panel-shadow);
+    --dialog-padding: 16px;
+    --dialog-header-btn-size: 32px;
+}
+
+/* Native shell — keep chrome-free so .dialog-content owns the look */
+.dialog {
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+    height: 100%;
+}
+
+.dialog[open] {
+    display: grid;
+    place-items: center;
+}
+
+/* Radix: Dialog.Overlay — native: dialog::backdrop */
+.dialog-overlay,
+.dialog::backdrop {
+    background-color: var(--dialog-overlay-color);
+}
+
+.dialog-panel {
+    position: relative;
+    width: min(var(--dialog-width), calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    padding: 0;
+    border-radius: var(--dialog-radius);
+    border: 1px solid var(--dialog-border-color);
+    box-shadow: var(--dialog-shadow);
+
+}
+.dialog-content {
+    position: relative;
+    border-radius: var(--dialog-radius);
+    overflow: hidden;
+    color: var(--c-gray-900);
+    background-color: var(--dialog-background-color);
+}
+.dialog-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--dialog-padding);
+    padding-bottom: 0;
+    position: relative;
+}
+.dialog-header .dialog-btn {
+    height: var(--dialog-header-btn-size);
+    min-width: var(--dialog-header-btn-size);
+    padding: 0 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: var(--c-gray-700);
+    background-color: var(--c-gray-100);
+    transition: background-color 250ms ease, color 250ms ease;
+}
+.dialog-header .dialog-btn:hover,
+.dialog-header .dialog-btn:focus-visible {
+    color: var(--c-gray-900);
+    background-color: var(--c-gray-300);
+}
+.dialog-header-title {
+    display: flex;
+    align-items: center;
+}
+.dialog-header-title:has(.dialog-header-title-text) {
+    padding-left: 24px;
+    padding-right: 4px;
+    border-radius: 0 999px 999px 0;
+    background: linear-gradient(to left, var(--c-gray-100), transparent);
+}
+.dialog-header-title-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: var(--dialog-header-btn-size);
+    line-height: var(--dialog-header-btn-size);
+    max-width: 200px;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--c-gray-900);
+}
+.dialog-header-title-icon {
+    width: var(--dialog-header-btn-size);
+    height: var(--dialog-header-btn-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    color: var(--c-gray-700);
+    flex-shrink: 0;
+}
+.dialog-header-title:has(.dialog-header-title-text) .dialog-header-title-icon {
+    background-color: transparent !important;
+}
+.dialog-body {
+    padding: var(--dialog-padding);
+    position: relative;
+}
+.dialog-footer {
+    padding: var(--dialog-padding);
+    padding-top: 0;
+    position: relative;
+}
+
+
+
+/* Export dialog */
+.dialog-export {
+
+}
+.dialog-export .dialog-content::before {
+    --green-blur-size: 600px;
+    --green-blur-color: #1CC65B;
+    content: '';
+    position: absolute;
+    top: calc((var(--green-blur-size) / 1.8) * -1);
+    left: 50%;
+    translate: -50% 0;
+    width: var(--green-blur-size);
+    height: var(--green-blur-size);
+    border-radius: 999px;
+    background: radial-gradient(
+        circle,
+        rgb(from var(--green-blur-color) r g b / 1) 0%,
+        rgb(from var(--green-blur-color) r g b / 0) 70%
+    );
+    filter: blur(30px);
+    -webkit-filter: blur(30px);
+}
+.dialog-export .dialog-header .dialog-btn-close {
+    background: linear-gradient(315deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.75) 100%);
+    background-blend-mode: hard-light;
+    box-shadow: inset 0px 0.75px 0px #FFFFFF;
+    color: #000;
+    transition: all 250ms ease;
+}
+.dialog-export .dialog-header .dialog-btn-close:hover,
+.dialog-export .dialog-header .dialog-btn-close:focus-visible {
+    background: linear-gradient(315deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.9) 100%);
+
+}
+.dialog-export .dialog-export-header {
+    display: flex;
+    justify-content: center;
+}
