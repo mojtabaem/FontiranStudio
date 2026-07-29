@@ -36,14 +36,49 @@
             data-object-scale-y="1"
 
               >
-                <div class="canvas-item-wrapper">
-                    <div class="canvas-item-content"></div>
-                    <div class="canvas-item-outline">
+                <div class="object-wrapper">
+                    <div class="object-content"></div>
+                    <div class="object-outline">
                         <div class="canvas-item-controls">
-
+                            <div class="corner corner-top-right"></div>
+                            <div class="corner corner-bottom-right"></div>
+                            <div class="corner corner-bottom-left"></div>
+                            <div class="corner corner-top-left"></div>
+                            <div class="handle handle-top"></div>
+                            <div class="handle handle-bottom"></div>
+                            <div class="handle handle-left"></div>
+                            <div class="handle handle-right"></div>
+                            <div class="center-anchor-point"></div>
                         </div>
                     </div>
-                    <div class="canvas-item-actions"></div>
+                    <div class="object-actions">
+                        <div class="object-actions-list">
+                            <!-- changes based on what is selected -->
+                             <button class="object-action-btn object-action-btn-copy" data-tippy-content="Copy">
+                                <div class="icon" data-svg="assets/icon/copy.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-duplicate" data-tippy-content="Duplicate">
+                                <div class="icon" data-svg="assets/icon/duplicate.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-cut" data-tippy-content="Cut">
+                                <div class="icon" data-svg="assets/icon/cut.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-delete" data-tippy-content="Delete">
+                                <div class="icon" data-svg="assets/icon/delete.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-export" data-tippy-content="Export">
+                                <div class="icon" data-svg="assets/icon/download.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-flip-horizontal" data-tippy-content="Flip">
+                                <div class="icon" data-svg="assets/icon/flip-horizontal.svg"></div>
+                             </button>
+                             <!--  -->
+                             <button class="object-action-btn object-action-btn-convert-to-shape" data-tippy-content="Convert to Shape">
+                                <div class="text">convert to shape</div>
+                                <div class="icon" data-svg="assets/icon/convert-to-shape.svg"></div>
+                             </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
