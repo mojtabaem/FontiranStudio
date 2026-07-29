@@ -389,9 +389,32 @@
                         <div class="dialog-export-header">
                             <img src="assets/img/export-dialog-arrow.svg" class="dialog-export-arrow" alt="">
                         </div>
-                        <div class="dialog-export-options"></div>
                         <div class="dialog-export-preview">
-                            <img src="assets/img/export-preview-placeholder.png" class="preview-image" alt="">
+                            <div class="export-preview-image">
+                                <img src="assets/img/export-preview-placeholder.png" alt="">
+                            </div>
+                            <div class="export-preview-details">
+                                <div class="format-size">
+                                    <div class="export-format-selector">
+                                        <button class="export-format-btn export-format-btn-png is-active" id="export-png">PNG</button>
+                                        <button class="export-format-btn export-format-btn-svg" id="export-svg">SVG</button>
+                                    </div>
+                                    <!-- exported object/s size in px -->
+                                    <div class="export-size">600x200px</div>
+                                </div>
+                                <div class="export-file-name">
+                                    <input
+                                        class="input-export-file-name"
+                                        type="text"
+                                        id="export-file-name"
+                                        value="filename"
+                                        maxlength="50"
+                                        placeholder="filename"
+                                    >
+                                    <!-- change suffix value based on selected format -->
+                                    <div class="export-file-suffix">.png</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
