@@ -24,38 +24,38 @@
 :root {
     --btn-size-sm-height: 30px;
     --btn-height: 38px;
-    --btn-size-lg-height: 48px;
+    --btn-size-lg-height: 46px;
 
     --btn-icon-size-sm: 20px;
     --btn-icon-size: 24px;
     --btn-icon-size-lg: 28px;
 
-    --btn-size-sm-border-radius: 8px;
-    --btn-border-radius: 10px;
-    --btn-size-lg-border-radius: 16px;
+    --btn-size-sm-border-radius: 6px;
+    --btn-border-radius: 8px;
+    --btn-size-lg-border-radius: 10px;
 
     --btn-size-sm-padding: 6px;
     --btn-padding: 12px;
-    --btn-size-lg-padding: 18px;
+    --btn-size-lg-padding: 12px;
 
     --btn-size-sm-gap: 4px;
     --btn-gap: 8px;
-    --btn-size-lg-gap: 12px;
+    --btn-size-lg-gap: 10px;
 
     --btn-text-size-sm: 13px;
     --btn-text-size: 15px;
     --btn-text-size-lg: 17px;
 
-    --btn-border-color: todo;
+    --btn-border-color: var(--c-gray-300);
     --btn-danger-border-color: todo;
     --btn-warning-border-color: todo;
     --btn-success-border-color: todo;
-    --btn-primary-border-color: var(--c-gray-950);
+    --btn-primary-border-color: #000;
     --btn-primary-danger-border-color: todo;
     --btn-primary-warning-border-color: todo;
     --btn-primary-success-border-color: todo;
 
-    --btn-bg-color: todo;
+    --btn-bg-color: var(--c-gray-50);
     --btn-danger-bg-color: todo;
     --btn-warning-bg-color: todo;
     --btn-success-bg-color: todo;
@@ -64,11 +64,11 @@
     --btn-primary-warning-bg-color: todo;
     --btn-primary-success-bg-color: todo;
 
-    --btn-fg-color: todo;
+    --btn-fg-color: var(--c-text-secondary);
     --btn-danger-fg-color: todo;
     --btn-warning-fg-color: todo;
     --btn-success-fg-color: todo;
-    --btn-primary-fg-color: #fff;
+    --btn-primary-fg-color: var(--c-gray-50);
     --btn-primary-danger-fg-color: todo;
     --btn-primary-warning-fg-color: todo;
     --btn-primary-success-fg-color: todo;
@@ -78,7 +78,7 @@
     --btn-tertiary-success-fg-color: todo;
 
     --btn-shadow: none;
-    --btn-primary-shadow: todo;
+    --btn-primary-shadow: inset 0px -1px 0px 0.5px #000;
     --btn-primary-danger-shadow: todo;
     --btn-primary-warning-shadow: todo;
     --btn-primary-success-shadow: todo;
@@ -113,6 +113,7 @@
     --btn-bg-color: var(--btn-primary-bg-color);
     --btn-fg-color: var(--btn-primary-fg-color);
     --btn-border-color: var(--btn-primary-border-color);
+    --btn-shadow: var(--btn-primary-shadow);
 }
 .ui-btn.ui-btn-primary.ui-btn-danger {
     
@@ -123,6 +124,7 @@
 .ui-btn.ui-btn-primary.ui-btn-success {
 
 }
+
 .ui-btn.ui-btn-tertiary {
 
 }
@@ -138,7 +140,7 @@
 
 .ui-btn {
     height: var(--btn-height);
-    width: fit-content;
+    width: 100%;
     min-width: var(--btn-height);
     padding: 0 var(--btn-padding);
     display: inline-flex;
@@ -152,6 +154,21 @@
     background-color: var(--btn-bg-color);
     color: var(--btn-fg-color);
     font-size: var(--btn-text-size);
+    transition:
+    background-color 250ms ease-in-out,
+    color 250ms ease-in-out,
+    border-color 250ms ease-in-out,
+    box-shadow 250ms ease-in-out;
+}
+.ui-btn:hover,
+.ui-btn:focus {
+    --btn-bg-color: var(--c-gray-150);
+    --btn-border-color: var(--c-gray-500);
+}
+.ui-btn.ui-btn-primary:hover,
+.ui-btn.ui-btn-primary:focus {
+    --btn-bg-color: var(--btn-primary-border-color);
+    --btn-border-color: var(--btn-primary-border-color);
 }
 .ui-btn > .text {
     padding-top: 2px;
@@ -160,7 +177,7 @@
     padding-top: 1px;
 }
 .ui-btn-size-lg > .text {
-    padding-top: 4px;
+    padding-top: 2px;
 }
 .ui-btn > .icon {
 

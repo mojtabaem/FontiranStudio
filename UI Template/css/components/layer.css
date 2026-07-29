@@ -1,0 +1,30 @@
+:root {
+ --layer-height: 28px;
+ --layer-inner-padding: 8px;
+}
+.layer-item {
+    background-color: transparent;
+    border-radius: 4px;
+    transition: background-color 150ms ease;
+}
+.layer-item:hover {
+    background-color: var(--c-gray-100);
+}
+.layer-item-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--layer-height);
+}
+.layer-item-lead {
+    display: flex;
+    align-items: center;
+}
+.layer-handle {
+    cursor: grab;
+    color: var(--c-gray-600);
+    transition: color 250ms ease;
+}
+.layer-handle:hover {
+    color: var(--c-gray-900);
+}

@@ -10,11 +10,4 @@
     --br-md: 12px;
     --br-lg: 16px;
     --br-xl: 24px;
-
-    /* panel */
-    --panel-height: 54px;
-    --panel-border-radius: calc(var(--panel-height) / 2);
-    --panel-background-color: #FFFFFF;
-    --panel-border-color: #d1d1d1;
-    --panel-shadow:  0px 3px 6px -3px rgba(0, 0, 0, 0.1);
 }
