@@ -412,10 +412,10 @@
 }
 </style>
 <g id="x--up" clip-path="url(#clip0_164_747)">
-<path id="line1" transform="translate(6 6)" d="M6.00002 6.00002L0 0" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="line2" transform="matrix(-1 0 0 1 18 6)" d="M6.00002 6.00002L0 0" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="line3" transform="matrix(-1 0 0 1 12 12)" d="M6.00002 6.00002L0 0" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
-<path id="line4" transform="translate(12 12)" d="M6.00002 6.00002L0 0" stroke="black" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="line1" transform="translate(6 6)" d="M6.00002 6.00002L0 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="line2" transform="matrix(-1 0 0 1 18 6)" d="M6.00002 6.00002L0 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="line3" transform="matrix(-1 0 0 1 12 12)" d="M6.00002 6.00002L0 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="line4" transform="translate(12 12)" d="M6.00002 6.00002L0 0" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
 </g>
 <defs>
 <clipPath id="clip0_164_747">

@@ -17,6 +17,8 @@
         offset: [0, 10],
         duration: [150, 100],
         delay: [500, 100],
+        // Native <dialog> is top-layer; body-appended tips sit underneath
+        appendTo: (reference) => reference.closest('dialog') || document.body,
     });
 })();
 
@@ -46,6 +48,7 @@
         offset: [0, 10],
         duration: [150, 100],
         content: getTemplateContent,
+        appendTo: (reference) => reference.closest('dialog') || document.body,
     });
 
     tippy.createSingleton(instances, {
@@ -59,5 +62,6 @@
         delay: [1000, 150],
         moveTransition: 'transform 0.2s ease-out',
         overrides: ['placement'],
+        appendTo: () => document.body,
     });
 })();

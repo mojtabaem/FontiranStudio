@@ -40,36 +40,36 @@
 
     --btn-size-sm-gap: 4px;
     --btn-gap: 8px;
-    --btn-size-lg-gap: 10px;
+    --btn-size-lg-gap: 12px;
 
     --btn-text-size-sm: 13px;
     --btn-text-size: 15px;
     --btn-text-size-lg: 17px;
 
     --btn-border-color: var(--c-gray-300);
-    --btn-danger-border-color: todo;
+    --btn-danger-border-color: var(--c-red-300);
     --btn-warning-border-color: todo;
     --btn-success-border-color: todo;
     --btn-primary-border-color: #000;
-    --btn-primary-danger-border-color: todo;
+    --btn-primary-danger-border-color: var(--c-red-700);
     --btn-primary-warning-border-color: todo;
     --btn-primary-success-border-color: todo;
 
     --btn-bg-color: var(--c-gray-50);
-    --btn-danger-bg-color: todo;
+    --btn-danger-bg-color: var(--c-red-50);
     --btn-warning-bg-color: todo;
     --btn-success-bg-color: todo;
     --btn-primary-bg-color: var(--c-gray-850);
-    --btn-primary-danger-bg-color: todo;
+    --btn-primary-danger-bg-color: var(--c-red-500);
     --btn-primary-warning-bg-color: todo;
     --btn-primary-success-bg-color: todo;
 
     --btn-fg-color: var(--c-text-secondary);
-    --btn-danger-fg-color: todo;
+    --btn-danger-fg-color: var(--c-red-950);
     --btn-warning-fg-color: todo;
     --btn-success-fg-color: todo;
-    --btn-primary-fg-color: var(--c-gray-50);
-    --btn-primary-danger-fg-color: todo;
+    --btn-primary-fg-color: var(--c-gray-25);
+    --btn-primary-danger-fg-color: var(--c-gray-25);
     --btn-primary-warning-fg-color: todo;
     --btn-primary-success-fg-color: todo;
     --btn-tertiary-fg-color: todo;
@@ -79,7 +79,7 @@
 
     --btn-shadow: none;
     --btn-primary-shadow: inset 0px -1px 0px 0.5px #000;
-    --btn-primary-danger-shadow: todo;
+    --btn-primary-danger-shadow: inset 0px -1px 0px 0.5px var(--c-red-700);
     --btn-primary-warning-shadow: todo;
     --btn-primary-success-shadow: todo;
 
@@ -101,7 +101,9 @@
     --btn-text-size: var(--btn-text-size-lg);
 }
 .ui-btn.ui-btn-danger {
-
+    --btn-bg-color: var(--btn-danger-bg-color);
+    --btn-fg-color: var(--btn-danger-fg-color);
+    --btn-border-color: var(--btn-danger-border-color);
 }
 .ui-btn.ui-btn-warning {
 
@@ -116,7 +118,10 @@
     --btn-shadow: var(--btn-primary-shadow);
 }
 .ui-btn.ui-btn-primary.ui-btn-danger {
-    
+    --btn-bg-color: var(--btn-primary-danger-bg-color);
+    --btn-fg-color: var(--btn-primary-danger-fg-color);
+    --btn-border-color: var(--btn-primary-danger-border-color);
+    --btn-shadow: var(--btn-primary-danger-shadow);
 }
 .ui-btn.ui-btn-primary.ui-btn-warning {
 
@@ -170,6 +175,16 @@
     --btn-bg-color: var(--btn-primary-border-color);
     --btn-border-color: var(--btn-primary-border-color);
 }
+.ui-btn.ui-btn-danger:hover,
+.ui-btn.ui-btn-danger:focus {
+    --btn-bg-color: var(--c-red-100);
+    --btn-border-color: var(--c-red-500);
+}
+.ui-btn.ui-btn-primary.ui-btn-danger:hover,
+.ui-btn.ui-btn-primary.ui-btn-danger:focus {
+    --btn-bg-color: var(--btn-primary-danger-border-color);
+    --btn-border-color: var(--btn-primary-danger-border-color);
+}
 .ui-btn > .text {
     padding-top: 2px;
 }
@@ -179,6 +194,14 @@
 .ui-btn-size-lg > .text {
     padding-top: 2px;
 }
+.ui-btn:has(.icon) .text {
+    padding-top: 0 !important;
+}
 .ui-btn > .icon {
-
+    opacity: 0.8;
+    transition: opacity 250ms ease-in-out;
+}
+.ui-btn:hover > .icon,
+.ui-btn:focus > .icon {
+    opacity: 1;
 }

@@ -11,7 +11,7 @@
     --sidebar-inner-padding: 10px;
     --sidebar-header-item-size: calc(var(--panel-height) - (var(--sidebar-inner-padding) * 2));
     --sidebar-panel-min-height: var(--panel-height);
-    --layers-panel-height: 240px;
+    --layers-panel-height: 276px;
 }
 
 .sidebar {

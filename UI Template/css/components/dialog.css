@@ -206,3 +206,149 @@
 .btn-export-copy {
     width: 30% !important;
 }
+
+/* login dialog */
+.dialog-login {
+
+}
+.dialog-login-content {
+    direction: rtl;
+    padding: 24px 12px 0 12px;
+}
+.dialog-login-content .text {
+    text-align: center;
+    color: var(--c-text-secondary);
+    line-height: 1.8;
+}
+
+/* profile dialog */
+.dialog-profile-content {
+
+}
+.user-profile-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--c-gray-200);
+}
+.user-profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-direction: row-reverse;
+    text-align: right;
+}
+.user-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 999px;
+    overflow: hidden;
+    box-shadow: 0 0 0 1px var(--c-gray-200);
+}
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.user-details {
+    padding-top: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+}
+.user-phone,
+.user-email {
+    font-size: 15px;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--c-text-tertiary);
+}
+.user-phone {
+    font-weight: 700;
+    color: var(--c-text-primary);
+}
+.user-profile-link {
+    color: var(--c-gray-400);
+    transition: color 250ms ease;
+}
+.user-profile-link:hover,
+.user-profile-link:focus-visible {
+    color: var(--c-gray-700);
+}
+.user-fonts {
+    direction: rtl;
+    padding: 16px 0;
+}
+.user-fonts-header {
+    font-size: 13px;
+    color: var(--c-text-tertiary);
+    padding-bottom: 12px;
+}
+.user-fonts-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+    min-height: 60px;
+    max-height: 300px;
+    overflow: auto;
+}
+.user-fonts-list:has(.empty-state) {
+    justify-content: center;
+    align-items: center;
+}
+.user-fonts-list .empty-state {
+    background-color: var(--c-gray-50);
+    border-radius: 16px;
+    padding: 8px 16px 24px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--c-text-tertiary);
+    font-size: 15px;
+    width: 100%;
+}
+.user-fonts-list .empty-state .icon {
+    width: 96px;
+    opacity: 0.7;
+}
+.user-font-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+    padding: 6px 12px;
+    background-color: var(--c-gray-200);
+    box-shadow: inset 0 0 0 1px var(--c-gray-200);
+    border-radius: 8px;
+    height: 32px;
+}
+.user-font-item .font-title {
+    font-weight: bold;
+    color: var(--c-text-primary);
+    font-size: 13px;
+}
+.user-font-item .font-type {
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--c-text-secondary);
+}
+.user-font-item .font-link {
+    color: var(--c-gray-600);
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 250ms ease;
+}
+.user-font-item .font-link:hover,
+.user-font-item .font-link:focus-visible {
+    color: var(--c-text-primary);
+}
