@@ -15,8 +15,8 @@
         placement: 'top',
         arrow: true,
         offset: [0, 10],
-        duration: [150, 100],
-        delay: [500, 100],
+        duration: [100, 100],
+        delay: [250, 100],
         // Native <dialog> is top-layer; body-appended tips sit underneath
         appendTo: (reference) => reference.closest('dialog') || document.body,
     });

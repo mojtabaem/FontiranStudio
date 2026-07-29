@@ -22,7 +22,7 @@
             is-selected => object-selected
             -->
             <div 
-            class="object object-text object-visible object-selected" 
+            class="object object-text object-visible" 
             id="object-2347"
             data-object-type="text"
             data-object-id="2347"
@@ -34,21 +34,27 @@
             data-object-rotation="0"
             data-object-scale-x="1"
             data-object-scale-y="1"
+            style="position: absolute; top: 300px; left: 300px;"
 
               >
                 <div class="object-wrapper">
-                    <div class="object-content"></div>
+                    <div class="object-content">
+                        <!-- delete this later is for testing -->
+                        <div class="temporary" style="font-size: 90px; font-weight: bold;">TEXT</div>
+                        <!-- delete this later is for testing -->
+                    </div>
                     <div class="object-outline">
-                        <div class="canvas-item-controls">
+                        <div class="object-outline-controls">
                             <div class="corner corner-top-right"></div>
                             <div class="corner corner-bottom-right"></div>
                             <div class="corner corner-bottom-left"></div>
                             <div class="corner corner-top-left"></div>
+                            <!--  dont show these two handles if object width is less than 40px  -->
                             <div class="handle handle-top"></div>
                             <div class="handle handle-bottom"></div>
+                            <!--  dont show these two handles if object height is less than 40px  -->
                             <div class="handle handle-left"></div>
                             <div class="handle handle-right"></div>
-                            <div class="center-anchor-point"></div>
                         </div>
                     </div>
                     <div class="object-actions">
@@ -63,17 +69,19 @@
                              <button class="object-action-btn object-action-btn-cut" data-tippy-content="Cut">
                                 <div class="icon" data-svg="assets/icon/cut.svg"></div>
                              </button>
-                             <button class="object-action-btn object-action-btn-delete" data-tippy-content="Delete">
-                                <div class="icon" data-svg="assets/icon/delete.svg"></div>
-                             </button>
-                             <button class="object-action-btn object-action-btn-export" data-tippy-content="Export">
-                                <div class="icon" data-svg="assets/icon/download.svg"></div>
-                             </button>
                              <button class="object-action-btn object-action-btn-flip-horizontal" data-tippy-content="Flip">
-                                <div class="icon" data-svg="assets/icon/flip-horizontal.svg"></div>
+                                <div class="icon" data-svg="assets/icon/flip-h.svg"></div>
                              </button>
-                             <!--  -->
-                             <button class="object-action-btn object-action-btn-convert-to-shape" data-tippy-content="Convert to Shape">
+                             <div class="object-action-divider"></div>
+                             <button class="object-action-btn object-action-btn-export" data-tippy-content="Export">
+                                <div class="icon" data-svg="assets/icon/export.svg"></div>
+                             </button>
+                             <button class="object-action-btn object-action-btn-delete" data-tippy-content="Delete">
+                                <div class="icon" data-svg="assets/icon/trash.svg"></div>
+                             </button>
+                             <div class="object-action-divider"></div>
+                             <!-- only for text object -->
+                             <button class="object-action-btn object-action-btn-convert" data-tippy-content="Convert to Shape">
                                 <div class="text">convert to shape</div>
                                 <div class="icon" data-svg="assets/icon/convert-to-shape.svg"></div>
                              </button>
@@ -566,5 +574,6 @@
     <script src="js/dialog.js"></script>
     <script src="js/side-panels.js"></script>
     <script src="js/layers.js"></script>
+    <script src="js/object-selection.js"></script>
 </body>
 </html>

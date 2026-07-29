@@ -1,0 +1,204 @@
+:root {
+    --outline-offset: 10px;
+    --outline-color: var(--c-green-400);
+    --outline-stroke-width: 2px;
+    --outline-resize-sudo-border: 8px;
+    --outline-resize-handle-width: 28px;
+    --outline-resize-handle-height: 6px;
+    --corner-size: 11px;
+    /* object actions */
+    --object-actions-outer-padding: 3px;
+    --object-actions-inner-padding: 2px;
+    --object-actions-size: 28px;
+    --object-actions-gap: 3px;
+    --object-actions-wrapper-height: calc(var(--object-actions-size) + var(--object-actions-outer-padding) * 2);
+
+}
+.object {
+    line-height: 1;
+}
+.object-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.object-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+}
+.object-outline {
+    position: absolute;
+    width: calc(100% + var(--outline-offset) * 2);
+    height: calc(100% + var(--outline-offset) * 2);
+    top: calc(var(--outline-offset) * -1);
+    left: calc(var(--outline-offset) * -1);
+    right: calc(var(--outline-offset) * -1);
+    bottom: calc(var(--outline-offset) * -1);
+    border: var(--outline-stroke-width) dashed var(--outline-color);
+}
+.object-outline-controls {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.object-outline .corner {
+    position: absolute;
+    width: var(--corner-size);
+    height: var(--corner-size);
+    background-color: #fff;
+    border: var(--outline-stroke-width) solid var(--outline-color);
+}
+.object-outline .corner-top-right {
+    top: calc((var(--corner-size) / 2) * -1);
+    right: calc((var(--corner-size) / 2) * -1);
+    cursor: nesw-resize;
+}
+.object-outline .corner-bottom-right {
+    bottom: calc((var(--corner-size) / 2) * -1);
+    right: calc((var(--corner-size) / 2) * -1);
+    cursor: nwse-resize;
+}
+.object-outline .corner-bottom-left {
+    bottom: calc((var(--corner-size) / 2) * -1);
+    left: calc((var(--corner-size) / 2) * -1);
+    cursor: nesw-resize;
+}
+.object-outline .corner-top-left {
+    top: calc((var(--corner-size) / 2) * -1);
+    left: calc((var(--corner-size) / 2) * -1);
+    right: calc((var(--corner-size) / 2) * -1);
+    cursor: nwse-resize;
+}
+.handle {
+    position: absolute;
+}
+.handle:after {
+    content: '';
+    position: absolute;
+    background-color: var(--outline-color);
+}
+.handle-top,
+.handle-bottom {
+    height: var(--outline-resize-sudo-border);
+    width: 100%;
+    top: calc((var(--outline-resize-sudo-border) / 2) * -1);
+    background-color: transparent;
+    cursor: ns-resize;
+}
+.handle-bottom {
+    top: auto;
+    bottom: calc((var(--outline-resize-sudo-border) / 2) * -1);
+}
+.handle-top:after,
+.handle-bottom:after {
+    width: var(--outline-resize-handle-width);
+    height: var(--outline-resize-handle-height);
+    left:50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+
+}
+.handle-bottom:after {
+    top: auto;
+    bottom: 0px;
+}
+.handle-left,
+.handle-right {
+    width: var(--outline-resize-sudo-border);
+    height: 100%;
+    left: calc((var(--outline-resize-sudo-border) / 2) * -1);
+    background-color: transparent;
+    cursor: ew-resize;
+}
+.handle-right {
+    left: auto;
+    right: calc((var(--outline-resize-sudo-border) / 2) * -1);
+}
+.handle-right:after,
+.handle-left:after {
+    width: var(--outline-resize-handle-height);
+    height: var(--outline-resize-handle-width);
+    top:50%;
+    transform: translateY(-50%);
+    border-radius: 4px;
+    right: 0px;
+}
+.handle-left:after {
+    right: auto;
+    left: 0px;
+}
+.object-actions {
+    position: absolute;
+    height: var(--object-actions-wrapper-height);
+    top: calc((var(--object-actions-wrapper-height) + 20px) * -1);
+    left: 50%;
+    transform: translateX(-50%);
+}
+.object-actions-list {
+    display: flex;
+    flex-direction: row;
+    gap: var(--object-actions-gap);
+    padding: var(--object-actions-outer-padding);
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow:
+        inset 0 0 0 1px var(--c-gray-300),
+        0px 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+.object-action-btn {
+    width: var(--object-actions-size);
+    height: var(--object-actions-size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--object-actions-inner-padding);
+    border-radius: 4px;
+    color: var(--c-gray-800);
+    background-color: #fff;
+    flex-shrink: 0;
+    transition: background-color 200ms ease-in-out;
+}
+.object-action-btn:hover {
+    background-color: var(--c-gray-200);
+    color: #000;
+}
+.object-action-btn .icon {
+    max-width: 100%;
+    max-height: 100%;
+}
+.object-action-btn .icon svg {
+    width: 100%;
+    height: 100%;
+}
+.object-action-btn-delete {
+    color: var(--c-red-300);
+}
+.object-action-btn-delete:hover {
+    color: var(--c-red-500);
+}
+.object-action-btn-convert {
+    width: fit-content;
+    white-space: nowrap;
+    padding: var(--object-actions-inner-padding) 6px;
+    font-size: 12px;
+    background-color: var(--c-gray-100);
+    box-shadow: inset 0 0 0 1px var(--c-gray-300);
+}
+.object-action-divider {
+    width: 1px;
+    height: calc(var(--object-actions-size) + var(--object-actions-outer-padding) * 2);
+    margin-top: calc(var(--object-actions-outer-padding) * -1);
+    margin-bottom: calc(var(--object-actions-outer-padding) * -1);
+    background-color: var(--c-gray-200);
+}
+.object-actions,
+.object-outline {
+    display: none;
+}
+
+.object.object-selected .object-actions,
+.object.object-selected .object-outline {
+    display: block;
+}
