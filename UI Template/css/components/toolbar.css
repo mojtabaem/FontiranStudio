@@ -45,6 +45,7 @@
     justify-content: center;
     transition: background-color 250ms ease-in-out;
     color: var(--c-text);
+    flex-shrink: 0;
 }
 .toolbar-stream-main .toolbar-item:first-child {
     border-radius:
