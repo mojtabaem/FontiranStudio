@@ -25,11 +25,11 @@
 .input-group .input-control.input-field .input {
     border-radius: 0;
 }
-.input-group .input-control.input-field:first-child .input {
+.input-group .input-control.input-field:first-of-type .input {
     border-top-left-radius: var(--input-border-radius);
     border-bottom-left-radius: var(--input-border-radius);
 }
-.input-group .input-control.input-field:last-child .input {
+.input-group .input-control.input-field:last-of-type .input {
     border-top-right-radius: var(--input-border-radius);
     border-bottom-right-radius: var(--input-border-radius);
 }
@@ -58,4 +58,31 @@
 .input-control.input-field .input-prefix {
     left: 2px;
     border-radius: 4px 0 0 4px;
+}
+.input-group-link-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6px;
+    width: var(--input-group-link-size);
+    height: var(--input-group-link-size);
+    background-color: #fff;
+    color: var(--c-gray-300);
+    border-radius: 999px;
+    transition: color 250ms ease-in-out;
+}
+.input-group-link-btn:hover {
+    color: var(--c-gray-500);
+}
+.input-group-link-btn.is-locked {
+    color: var(--c-green-500);
+}
+.input-group-link-btn.is-locked:hover {
+    color: var(--c-green-500);
+}
+.input-group:has(.input-size-s) .input-group-link-btn {
+    bottom: 3px;
+}
+.input-group:has(.input-size-l) .input-group-link-btn {
+
 }

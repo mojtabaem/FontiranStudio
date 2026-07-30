@@ -3,6 +3,10 @@
     --input-height-small: 24px;
     --input-height-large: todo;
 
+    --input-group-link-size: 24px;
+    --input-group-link-size-small: 18px;
+    --input-group-link-size-large: todo;
+
     --input-font-size: 13px;
     --input-font-size-small: 13px;
     --input-font-size-large: todo;
@@ -41,6 +45,9 @@
     --label-height: var(--label-height-small);
     --input-inner-padding: var(--input-inner-padding-small);
 }
+.input-group:has(.input-size-s) {
+    --input-group-link-size: var(--input-group-link-size-small);
+}
 .input-size-l {
     --input-height: var(--input-height-large);
     --input-font-size: var(--input-font-size-large);
@@ -49,6 +56,10 @@
     --label-margin: var(--label-margin-large);
     --label-height: var(--label-height-large);
     --input-inner-padding: var(--input-inner-padding-large);
+    --input-group-link-size: var(--input-group-link-size-large);
+}
+.input-group:has(.input-size-l) {
+    --input-group-link-size: var(--input-group-link-size-large);
 }
 
 .input-control {
@@ -122,5 +133,5 @@
     display: flex;
     flex-direction: row;
     gap: var(--input-group-gap);
-
+    position: relative;
 }
