@@ -1,0 +1,28 @@
+:root {
+    
+}
+.input-stepper-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--c-gray-100);
+    border-radius: var(--input-border-radius);
+}
+
+.input-stepper-btn {
+    width: var(--input-height);
+    height: var(--input-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background-color 250ms ease-in-out;
+}
+.input-stepper-btn-decrement {
+    border-top-left-radius: var(--input-border-radius);
+    border-bottom-left-radius: var(--input-border-radius);
+}
+.input-stepper-btn-increment {
+    border-top-right-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+}

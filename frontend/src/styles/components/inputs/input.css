@@ -1,0 +1,88 @@
+:root {
+
+}
+.input-control .input-wrapper {
+    position: relative;
+}
+.input-control .label {
+    font-size: var(--label-font-size);
+}
+.input-control.input-field .input {
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    font-size: var(--input-font-size);
+    background-color: var(--c-gray-200);
+    padding: var(--input-inner-padding);
+    color: var(--c-text-primary);
+}
+.input-control.input-field .input:hover {
+    box-shadow: inset 0 0 0 1px var(--c-gray-400);
+}
+.input-control.input-field .input:focus-visible,
+.input-control.input-field .input:focus {
+    box-shadow: inset 0 0 0 1px var(--c-green-500);
+}
+.input-group .input-control.input-field .input {
+    border-radius: 0;
+}
+.input-group .input-control.input-field:first-of-type .input {
+    border-top-left-radius: var(--input-border-radius);
+    border-bottom-left-radius: var(--input-border-radius);
+}
+.input-group .input-control.input-field:last-of-type .input {
+    border-top-right-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+}
+.input-control.input-field .input-suffix,
+.input-control.input-field .input-prefix {
+    position: absolute;
+    height: calc(var(--input-height) - 4px);
+    line-height: calc(var(--input-height) - 4px);
+    width: fit-content;
+    min-width: 20px;
+    padding: 0 4px;
+    top: 2px;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    text-align: center;
+    color: var(--c-gray-600);
+    background-color: var(--c-gray-200);
+}
+.input-control.input-field .input-suffix {
+    right: 2px;
+    border-radius: 0 4px 4px 0;
+}
+.input-control.input-field .input-prefix {
+    left: 2px;
+    border-radius: 4px 0 0 4px;
+}
+.input-group-link-btn {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 6px;
+    width: var(--input-group-link-size);
+    height: var(--input-group-link-size);
+    background-color: #fff;
+    color: var(--c-gray-300);
+    border-radius: 999px;
+    transition: color 250ms ease-in-out;
+}
+.input-group-link-btn:hover {
+    color: var(--c-gray-500);
+}
+.input-group-link-btn.is-locked {
+    color: var(--c-green-500);
+}
+.input-group-link-btn.is-locked:hover {
+    color: var(--c-green-500);
+}
+.input-group:has(.input-size-s) .input-group-link-btn {
+    bottom: 3px;
+}
+.input-group:has(.input-size-l) .input-group-link-btn {
+
+}

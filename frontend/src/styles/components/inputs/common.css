@@ -1,0 +1,137 @@
+:root {
+    --input-height: 38px;
+    --input-height-small: 24px;
+    --input-height-large: todo;
+
+    --input-group-link-size: 24px;
+    --input-group-link-size-small: 18px;
+    --input-group-link-size-large: todo;
+
+    --input-font-size: 13px;
+    --input-font-size-small: 13px;
+    --input-font-size-large: todo;
+
+    --input-border-radius: 6px;
+    --input-border-radius-small: 6px;
+    --input-border-radius-large: 8px;
+
+    --input-inner-padding: 0 8px;
+    --input-inner-padding-small: 0 5px;
+    --input-inner-padding-large: 0 12px;
+
+    --label-height: 16px;
+    --label-height-small: 12px;
+    --label-height-large: todo;
+
+    --label-font-size: 12px;
+    --label-font-size-small: 11px;
+    --label-font-size-large: todo;
+
+    --label-margin: 2px;
+    --label-margin-small: 2px;
+    --label-margin-large: todo;
+
+    --input-group-gap: 3px;
+    
+    --input-border-color: #d1d1d1;
+}
+
+.input-size-s {
+    --input-height: var(--input-height-small);
+    --input-font-size: var(--input-font-size-small);
+    --input-border-radius: var(--input-border-radius-small);
+    --label-font-size: var(--label-font-size-small);
+    --label-margin: var(--label-margin-small);
+    --label-height: var(--label-height-small);
+    --input-inner-padding: var(--input-inner-padding-small);
+}
+.input-group:has(.input-size-s) {
+    --input-group-link-size: var(--input-group-link-size-small);
+}
+.input-size-l {
+    --input-height: var(--input-height-large);
+    --input-font-size: var(--input-font-size-large);
+    --input-border-radius: var(--input-border-radius-large);
+    --label-font-size: var(--label-font-size-large);
+    --label-margin: var(--label-margin-large);
+    --label-height: var(--label-height-large);
+    --input-inner-padding: var(--input-inner-padding-large);
+    --input-group-link-size: var(--input-group-link-size-large);
+}
+.input-group:has(.input-size-l) {
+    --input-group-link-size: var(--input-group-link-size-large);
+}
+
+.input-control {
+    width: 100%;
+}
+
+/* reset inputs appearance */
+.input-control input,
+.input-control textarea,
+.input-control select {
+    width: 100%;
+    min-width: 0;
+    appearance: none;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    outline: none;
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    line-height: inherit;
+    box-shadow: none;
+    transition: all 200ms ease-in-out;
+}
+.input-control input::-webkit-outer-spin-button,
+.input-control input::-webkit-inner-spin-button {
+    appearance: none;
+    margin: 0;
+}
+.input-control input[type="number"] {
+    appearance: textfield;
+}
+.input-control input[type="search"]::-webkit-search-decoration,
+.input-control input[type="search"]::-webkit-search-cancel-button {
+    appearance: none;
+}
+.input-control select {
+    background-image: none;
+}
+.input-control textarea {
+    resize: none;
+    overflow: auto;
+}
+.input-control .input {
+    height: var(--input-height);
+}
+.input-control .label {
+    height: var(--label-height);
+    font-size: var(--label-font-size);
+    color: var(--c-gray-500);
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: middle;
+    line-height: 1;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    margin: 0 var(--label-margin) var(--label-margin) var(--label-margin);
+}
+.input-control .input-suffix,
+.input-control .input-prefix {
+    font-size: var(--label-font-size);
+    position: absolute;
+    color: var(--c-text-tertiary);
+    pointer-events: none;
+}
+.input-group {
+    display: flex;
+    flex-direction: row;
+    gap: var(--input-group-gap);
+    position: relative;
+}

@@ -1,0 +1,54 @@
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 100;
+	src: url('Roboto_SemiCondensed-Thin.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 200;
+	src: url('Roboto_SemiCondensed-ExtraLight.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 300;
+	src: url('Roboto_SemiCondensed-Light.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 400;
+	src: url('Roboto_SemiCondensed-Regular.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 500;
+	src: url('Roboto_SemiCondensed-Medium.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 600;
+	src: url('Roboto_SemiCondensed-SemiBold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 700;
+	src: url('Roboto_SemiCondensed-Bold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 800;
+	src: url('Roboto_SemiCondensed-ExtraBold.woff2') format('woff2');
+}
+@font-face {
+	font-family: 'Roboto SemiCondensed';
+	font-style: normal;
+	font-weight: 900;
+	src: url('Roboto_SemiCondensed-Black.woff2') format('woff2');
+}

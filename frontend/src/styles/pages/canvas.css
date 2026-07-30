@@ -1,0 +1,8 @@
+:root {
+    --pattern-size: 20px;
+    --pattern-color: var(--c-bg-pattern);
+}
+body.page-canvas {
+    background-image: radial-gradient(circle, var(--pattern-color) 2px, transparent 2px);
+    background-size: var(--pattern-size) var(--pattern-size);
+}

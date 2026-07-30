@@ -1,0 +1,16 @@
+html {
+    font-family: dana-vf, dana, sans-serif;
+}
+body {
+    background-color: var(--c-bg);
+}
+.input-control-width-percentage .input,
+.input-control-height-percentage  .input{
+    font-size: 11px !important;
+}
+.input-control-height-percentage  .input {
+    text-align: right !important;
+}
+.aspect-ratio-lock {
+    
+}

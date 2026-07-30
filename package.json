@@ -1,0 +1,13 @@
+{
+  "name": "fontiran-studio",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Fontiran Studio — browser-based Persian typography design editor",
+  "scripts": {
+    "dev": "docker compose up --build",
+    "dev:down": "docker compose down",
+    "frontend:install": "npm install --prefix frontend",
+    "backend:install": "npm install --prefix backend",
+    "seed:fonts": "node scripts/download-seed-fonts.mjs"
+  }
+}

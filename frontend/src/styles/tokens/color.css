@@ -1,0 +1,135 @@
+:root {
+    --c-bg: #F5F5F5;
+    --c-bg-pattern: #DEDEDE;
+
+  /* gray */
+  --c-gray-0: hsl(0, 0%, 100%);
+  --c-gray-25: hsl(0, 10%, 98%);
+  --c-gray-50: hsl(210, 20%, 98%);
+  --c-gray-100: hsl(210, 14%, 96%);
+  --c-gray-150: hsl(210, 13%, 94%);
+  --c-gray-200: hsl(210, 11%, 93%);
+  --c-gray-300: hsl(210, 11%, 88%);
+  --c-gray-400: hsl(210, 8%, 80%);
+  --c-gray-500: hsl(210, 8%, 70%);
+  --c-gray-600: hsl(210, 7%, 54%);
+  --c-gray-700: hsl(210, 10%, 40%);
+  --c-gray-800: hsl(210, 13%, 25%);
+  --c-gray-850: hsl(210, 28%, 17%);
+  --c-gray-900: hsl(210, 30%, 11%);
+  --c-gray-950: hsl(210, 32%, 5%);
+  --c-gray-1000:hsl(0, 0%, 0%);
+
+  /* green */
+  --c-green-50: hsl(150, 52%, 96%);
+  --c-green-100: hsl(149, 52%, 90%);
+  --c-green-200: hsl(153, 48%, 80%);
+  --c-green-300: hsl(156, 44%, 67%);
+  --c-green-400: hsl(158, 40%, 50%);
+  --c-green-500: hsl(160, 62%, 40%);
+  --c-green-600: hsl(161, 81%, 31%);
+  --c-green-700: hsl(163, 81%, 25%);
+  --c-green-800: hsl(163, 76%, 21%);
+  --c-green-900: hsl(165, 72%, 17%);
+  --c-green-950: hsl(168, 76%, 10%);
+
+  /* red */
+  --c-red-50: hsl(358, 92%, 95%);
+  --c-red-100: hsl(358, 93%, 94%);
+  --c-red-200: hsl(358, 98%, 80%);
+  --c-red-300: hsl(358, 100%, 70%);
+  --c-red-400: hsl(358, 95%, 66%);
+  --c-red-500: hsl(358, 84%, 60%);
+  --c-red-600: hsl(358, 80%, 55%);
+  --c-red-700: hsl(358, 70%, 48%);
+  --c-red-800: hsl(358, 70%, 35%);
+  --c-red-900: hsl(358, 70%, 20%);
+  --c-red-950: hsl(358, 61%, 8%);
+
+  /* theme colors */
+  --c-theme: #2b5638;
+
+  /* accent colors */
+  --c-accent: #bda161;
+
+
+
+
+  /* fun ones */
+  --c-burgundy: hsl(357, 71%, 42%);
+  --c-punch: hsl(348, 95%, 68%);
+  --c-twitch: hsl(252, 100%, 62%);
+  --c-cobalt: hsl(218, 54%, 34%);
+  --c-azure: hsl(207, 90%, 54%);
+  --c-teal: hsl(187, 100%, 42%);
+  --c-mint: hsl(162, 74%, 46%);
+  --c-spotify: hsl(158, 80%, 40%);
+  --c-viper: hsl(137, 79%, 57%);
+  --c-jade: hsl(149, 33%, 73%);
+  --c-cyberpunk: hsl(66, 100%, 50%);
+  --c-kevin: hsl(51, 100%, 50%);
+  --c-mustard: hsl(46, 100%, 50%);
+  --c-apricot: hsl(39, 90%, 53%);
+  --c-scarlet: hsl(8, 100%, 60%);
+  --c-rose: hsl(8, 88%, 94%);
+  --c-align: hsl(50, 33%, 96%);
+  --c-cube: hsl(43, 27%, 85%);
+  --c-clay: hsl(30, 44%, 93%);
+  --c-camp: hsl(0, 0%, 12%);
+  --c-peacock: linear-gradient(
+    45deg,
+    hsl(240deg 69% 27%) 0%,
+    hsl(287deg 83% 26%) 11%,
+    hsl(312deg 100% 29%) 22%,
+    hsl(328deg 81% 41%) 33%,
+    hsl(344deg 70% 53%) 44%,
+    hsl(2deg 86% 64%) 56%,
+    hsl(17deg 100% 64%) 67%,
+    hsl(31deg 100% 63%) 78%,
+    hsl(43deg 100% 64%) 89%,
+    hsl(55deg 96% 68%) 100%
+  );
+  --c-instagram: linear-gradient(270.06deg, #FCA759 0.06%, #E82D56 30.75%, #A22DB4 66.13%, #643DCE 99.94%);
+
+
+  /* Text */
+  --c-text: hsl(210, 40%, 8%);
+  --c-text-primary: hsl(210, 40%, 8%);
+  --c-text-secondary: hsl(210, 22%, 18%);
+  --c-text-tertiary: hsl(210, 14%, 36%);
+  --c-text-quaternary: hsl(210, 8%, 48%);
+
+  /* produact tags colors */
+  --c-tag-new: hsla(225, 86%, 58%, 0.9);
+  --c-tag-new-border: hsla(225, 68%, 48%, 1);
+  --c-tag-bestseller: hsla(256, 82%, 66%, 0.9);
+  --c-tag-bestseller-border: hsla(256, 50%, 55%, 1);
+  --c-tag-limited: hsla(42, 98%, 56%, 0.9);
+  --c-tag-limited-border: hsla(42, 82%, 44%, 1);
+  --c-tag-featured: hsla(218, 20%, 41%, 0.9);
+  --c-tag-featured-border: hsla(218, 22%, 35%, 1);
+  --c-tag-dubai: hsla(348, 78%, 65%, 0.9);
+  --c-tag-dubai-border: hsla(348, 50%, 57%, 1);
+  --c-tag-openbox: hsla(18, 90%, 65%, 0.9);
+  --c-tag-openbox-border: hsla(16, 60%, 60%, 1);
+  --c-tag-damaged: hsla(18, 90%, 65%, 0.9);
+  --c-tag-damaged-border: hsla(16, 60%, 60%, 1);  /* Semantic */
+
+  /* banners */
+  --c-banner-bg: hsl(210, 25%, 97%);
+  --c-banner-fg: hsl(210, 20%, 44%);
+  --c-banner-border: hsl(210, 9%, 86%);
+  --c-banner-info-bg: hsl(220, 100%, 98%);
+  --c-banner-info-fg: hsl(220, 64%, 68%);
+  --c-banner-info-border: hsl(220, 78%, 88%);
+  --c-banner-success-bg: hsl(142, 57%, 97%);
+  --c-banner-success-fg: hsl(142, 32%, 58%);
+  --c-banner-success-border: hsl(151, 40%, 85%);
+  --c-banner-warning-bg: hsl(45, 100%, 96%);
+  --c-banner-warning-fg: hsl(45, 96%, 66%);
+  --c-banner-warning-border: hsl(45, 85%, 78%);
+  --c-banner-error-bg: hsl(30, 100%, 97%);
+  --c-banner-error-fg: hsl(30, 83%, 67%);
+  --c-banner-error-border: hsl(30, 80%, 82%);
+
+}

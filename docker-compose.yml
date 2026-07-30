@@ -1,0 +1,59 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: fontiran
+      POSTGRES_PASSWORD: fontiran
+      POSTGRES_DB: fontiran_studio
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U fontiran -d fontiran_studio"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://fontiran:fontiran@postgres:5432/fontiran_studio?schema=public
+      JWT_SECRET: fontiran-studio-dev-secret-change-me
+      FONTIRAN_PROVIDER: mock
+      MOCK_FONTS_DIR: /app/mock/fonts
+      PORT: "3000"
+      CORS_ORIGIN: http://localhost:5173
+      ADMIN_TOKEN: admin-dev-token
+      MOCK_USER_PHONE: "09171842213"
+      MOCK_USER_EMAIL: mojtabaemami@gmail.com
+      MOCK_USER_FONTIRAN_ID: mock-user-1
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./mock/fonts:/app/mock/fonts:ro
+      - ./backend/src:/app/src
+      - ./backend/prisma:/app/prisma
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    environment:
+      VITE_API_PROXY: http://backend:3000
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend/src:/app/src
+      - ./frontend/public:/app/public
+      - ./frontend/index.html:/app/index.html
+    depends_on:
+      - backend
+
+volumes:
+  postgres_data:

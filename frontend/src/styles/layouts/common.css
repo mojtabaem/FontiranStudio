@@ -1,0 +1,13 @@
+:root {
+    --outer-gutter: 24px;
+    --inner-gutter: 12px;
+    --gutter: 16px;
+
+    /* border radius */
+    --br-xs: 4px;
+    --br-sm: 8px;
+    --br: 12px;
+    --br-md: 12px;
+    --br-lg: 16px;
+    --br-xl: 24px;
+}

@@ -1,0 +1,179 @@
+@import url('./fontface.css');
+@import url('./reset.css');
+@import url('./tokens/-tokens.css');
+@import url('./layouts/-layouts.css');
+@import url('./components/-components.css');
+@import url('./pages/-pages.css');
+@import url('./vendor/tippy.js@6.3.7.scale.css');
+@import url('./main.css');
+
+/* App overrides */
+.app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.toast {
+  position: fixed;
+  bottom: calc(var(--outer-gutter) + var(--toolbar-height, 54px) + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  padding: 10px 16px;
+  border-radius: var(--br-sm);
+  background: var(--c-gray-900);
+  color: #fff;
+  font-size: 13px;
+  box-shadow: var(--panel-shadow);
+  pointer-events: none;
+  max-width: min(420px, calc(100vw - 48px));
+  text-align: center;
+}
+
+.canvas-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.canvas-viewport.is-panning,
+.canvas-viewport.is-space-panning,
+.canvas-viewport[data-cursor='grab'],
+.canvas[data-cursor='grab'] .canvas-viewport,
+body[data-cursor='grab'] .canvas-viewport {
+  cursor: grab;
+}
+
+.canvas-viewport.is-panning.is-dragging,
+.canvas-viewport.is-space-panning.is-dragging,
+.canvas-viewport.is-dragging,
+.canvas-viewport[data-cursor='grabbing'],
+.canvas[data-cursor='grabbing'] .canvas-viewport,
+body[data-cursor='grabbing'] .canvas-viewport {
+  cursor: grabbing;
+}
+
+.canvas-viewport[data-cursor='text'],
+.canvas[data-cursor='text'] .canvas-viewport,
+body[data-cursor='text'] .canvas-viewport {
+  cursor: text;
+}
+
+.canvas-viewport[data-cursor='crosshair'],
+.canvas[data-cursor='crosshair'] .canvas-viewport,
+body[data-cursor='crosshair'] .canvas-viewport,
+.canvas-viewport.is-path-editing {
+  cursor: crosshair;
+}
+
+.canvas-viewport.cursor-tool-text {
+  cursor: text;
+}
+
+.canvas-viewport.cursor-tool-path {
+  cursor: crosshair;
+}
+
+.path-editor {
+  z-index: 5;
+  overflow: visible;
+}
+
+
+.canvas-artboard {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4000px;
+  height: 2000px;
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--c-gray-300), 0 8px 32px rgba(0, 0, 0, 0.08);
+  transform-origin: 0 0;
+}
+
+.object-text-content {
+  white-space: nowrap;
+  direction: rtl;
+  line-height: 1;
+}
+
+.object-text-content.is-editing {
+  cursor: text;
+  min-width: 1ch;
+}
+
+.object-shape-svg {
+  display: block;
+  overflow: visible;
+}
+
+.selection-marquee {
+  border: 1px solid var(--c-green-400);
+  background: color-mix(in srgb, var(--c-green-400) 12%, transparent);
+  box-sizing: border-box;
+}
+
+.multi-select-overlay {
+  display: block !important;
+  box-sizing: border-box;
+}
+
+.handle-rotate {
+  position: absolute;
+  left: 50%;
+  top: -28px;
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-radius: 50%;
+  background: #fff;
+  border: var(--outline-stroke-width) solid var(--outline-color);
+  cursor: grab;
+}
+
+.handle-rotate:active {
+  cursor: grabbing;
+}
+
+.object-placeholder {
+  font-size: 14px;
+  color: var(--c-gray-700);
+  padding: 4px;
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Radix Dialog positioning (template CSS targets native <dialog>) */
+.dialog-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+}
+
+.dialog.dialog-panel,
+.dialog-panel[data-state] {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 901;
+  outline: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

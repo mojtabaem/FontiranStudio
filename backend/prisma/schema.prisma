@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  fontiranId String  @unique
+  phone     String?
+  email     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  design    Design?
+  fonts     UserFont[]
+}
+
+model FontFamily {
+  id          String   @id @default(cuid())
+  fontiranId  String?  @unique
+  name        String
+  nameEn      String?
+  isVariable  Boolean  @default(false)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  faces       FontFace[]
+  users       UserFont[]
+}
+
+model FontFace {
+  id           String     @id @default(cuid())
+  familyId     String
+  family       FontFamily @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  fileName     String
+  filePath     String
+  weight       Int        @default(400)
+  style        String     @default("normal")
+  isVariable   Boolean    @default(false)
+  axesJson     Json?
+  featuresJson Json?
+  createdAt    DateTime   @default(now())
+
+  @@unique([familyId, fileName])
+}
+
+model UserFont {
+  id       String     @id @default(cuid())
+  userId   String
+  familyId String
+  user     User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  family   FontFamily @relation(fields: [familyId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, familyId])
+}
+
+model Design {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  document  Json
+  updatedAt DateTime @updatedAt
+  createdAt DateTime @default(now())
+}
