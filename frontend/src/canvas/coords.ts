@@ -15,6 +15,12 @@ export function clientToArtboard(
   };
 }
 
+export type CanvasEdge = 'left' | 'right' | 'top' | 'bottom';
+
+export type PanEdges = Record<CanvasEdge, boolean>;
+
+const EDGE_EPS = 0.5;
+
 /**
  * Keep the artboard covering the viewport: no empty gutters outside the board.
  * When the scaled artboard is smaller than the viewport (shouldn't happen at min zoom),
@@ -48,6 +54,59 @@ export function clampPan(
   }
 
   return { panX: nextX, panY: nextY };
+}
+
+/** Which canvas edges are currently flush with the viewport (can't pan further). */
+export function getPanEdges(
+  panX: number,
+  panY: number,
+  zoom: number,
+  viewportWidth: number,
+  viewportHeight: number,
+): PanEdges {
+  const boardW = CANVAS_WIDTH * zoom;
+  const boardH = CANVAS_HEIGHT * zoom;
+
+  let left: boolean;
+  let right: boolean;
+  let top: boolean;
+  let bottom: boolean;
+
+  if (boardW <= viewportWidth) {
+    // Fully visible on X — both sides are "the edge"
+    left = true;
+    right = true;
+  } else {
+    const minX = viewportWidth - boardW;
+    left = panX >= -EDGE_EPS;
+    right = panX <= minX + EDGE_EPS;
+  }
+
+  if (boardH <= viewportHeight) {
+    top = true;
+    bottom = true;
+  } else {
+    const minY = viewportHeight - boardH;
+    top = panY >= -EDGE_EPS;
+    bottom = panY <= minY + EDGE_EPS;
+  }
+
+  return { left, right, top, bottom };
+}
+
+/** Edges that blocked a requested pan (requested ≠ clamped). */
+export function getBlockedEdges(
+  requestedX: number,
+  requestedY: number,
+  clampedX: number,
+  clampedY: number,
+): PanEdges {
+  return {
+    left: requestedX > clampedX + EDGE_EPS,
+    right: requestedX < clampedX - EDGE_EPS,
+    top: requestedY > clampedY + EDGE_EPS,
+    bottom: requestedY < clampedY - EDGE_EPS,
+  };
 }
 
 /** Zoom while keeping the artboard point under the cursor fixed. */

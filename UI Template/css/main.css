@@ -4,6 +4,55 @@ html {
 body {
     background-color: var(--c-bg);
 }
+
+/* Desktop-only gate — blocks the app under 1024×768 */
+.viewport-gate {
+    display: none;
+}
+
+@media (max-width: 1023px), (max-height: 767px) {
+    body {
+        overflow: hidden;
+    }
+
+    .viewport-gate {
+        display: flex;
+        position: fixed;
+        inset: 0;
+        z-index: 99999;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background-color: rgb(from var(--c-bg) r g b / 0.92);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .app {
+        pointer-events: none;
+        user-select: none;
+    }
+}
+
+.viewport-gate-card {
+    max-width: 420px;
+    width: 100%;
+    padding: 28px 24px;
+    border-radius: var(--br-lg, 16px);
+    background-color: var(--panel-background-color, #fff);
+    border: 1px solid var(--panel-border-color, #d1d1d1);
+    box-shadow: var(--panel-shadow, 0 3px 6px -3px rgba(0, 0, 0, 0.1));
+    text-align: center;
+}
+
+.viewport-gate-text {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.8;
+    color: var(--c-text-primary);
+}
+
 .input-control-width-percentage .input,
 .input-control-height-percentage  .input{
     font-size: 11px !important;

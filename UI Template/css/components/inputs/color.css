@@ -1,0 +1,119 @@
+:root {
+    --input-color-swatch-size: 16px;
+    --input-color-swatch-gap: 6px;
+}
+.input-control.input-color .input-color-swatch {
+    position: absolute;
+    left: 4px;
+    top: calc((var(--input-height) - var(--input-color-swatch-size)) / 2);
+    width: var(--input-color-swatch-size);
+    height: var(--input-color-swatch-size);
+    border-radius: 4px;
+    overflow: hidden;
+    display: block;
+    cursor: pointer;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    /* checkerboard shows through when a semi-transparent color is used */
+    background-image:
+        linear-gradient(45deg, #d9d9d9 25%, transparent 25%, transparent 75%, #d9d9d9 75%),
+        linear-gradient(45deg, #d9d9d9 25%, transparent 25%, transparent 75%, #d9d9d9 75%);
+    background-size: 8px 8px;
+    background-position: 0 0, 4px 4px;
+    transition: box-shadow 200ms ease-in-out;
+}
+.input-control.input-color .input-color-swatch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--input-color-value, transparent);
+}
+.input-control.input-color .input-color-swatch:hover {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22);
+}
+.input-control.input-color .input-color-swatch:has(.input-color-native:focus-visible) {
+    box-shadow: inset 0 0 0 2px var(--c-green-500);
+}
+.input-control.input-color .input-color-native {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+}
+.input-control.input-color .input-color-hex {
+    padding-inline-start: calc(
+        6px + var(--input-color-swatch-size) + var(--input-color-swatch-gap)
+    );
+    padding-inline-end: calc(var(--input-height) - 4px);
+    text-transform: uppercase;
+}
+.input-control.input-color .input-color-hex.is-invalid {
+    color: var(--c-red-500);
+}
+.input-control.input-color .input-color-eyedropper {
+    position: absolute;
+    right: 2px;
+    top: 3px;
+    width: calc(var(--input-height) - 4px);
+    height: calc(var(--input-height) - 4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: calc(var(--input-border-radius) - 2px);
+    color: var(--c-gray-600);
+    cursor: pointer;
+    transition: background-color 200ms ease-in-out, color 200ms ease-in-out;
+}
+.input-control.input-color .input-color-eyedropper:hover,
+.input-control.input-color .input-color-eyedropper:focus-visible {
+    background-color: var(--c-gray-300);
+    color: var(--c-text-primary);
+}
+.input-control.input-color .input-color-eyedropper .icon {
+    width: 14px;
+    height: 14px;
+    display: flex;
+}
+.input-control.input-color .input-color-eyedropper .icon svg {
+    width: 100%;
+    height: 100%;
+}
+.input-control.input-color .input-color-eyedropper:not(.is-supported) {
+    display: none;
+}
+.input-control.input-color .input-color-eyedropper.is-active {
+    background-color: var(--c-green-500);
+    color: #fff;
+}
+
+/* disabled — hex / native / wrapper class */
+.input-control.input-color.is-disabled .input-color-swatch,
+.input-control.input-color:has(.input-color-hex:disabled) .input-color-swatch,
+.input-control.input-color:has(.input-color-native:disabled) .input-color-swatch {
+    cursor: not-allowed;
+    opacity: 0.55;
+    pointer-events: none;
+}
+.input-control.input-color.is-disabled .input-color-swatch:hover,
+.input-control.input-color:has(.input-color-hex:disabled) .input-color-swatch:hover,
+.input-control.input-color:has(.input-color-native:disabled) .input-color-swatch:hover {
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+}
+.input-control.input-color.is-disabled .input-color-eyedropper,
+.input-control.input-color:has(.input-color-hex:disabled) .input-color-eyedropper,
+.input-control.input-color:has(.input-color-native:disabled) .input-color-eyedropper {
+    color: var(--c-gray-400);
+    pointer-events: none;
+    cursor: not-allowed;
+}
+.input-control.input-color.is-disabled .input-color-eyedropper:hover,
+.input-control.input-color.is-disabled .input-color-eyedropper:focus-visible,
+.input-control.input-color:has(.input-color-hex:disabled) .input-color-eyedropper:hover,
+.input-control.input-color:has(.input-color-hex:disabled) .input-color-eyedropper:focus-visible {
+    background-color: transparent;
+    color: var(--c-gray-400);
+}

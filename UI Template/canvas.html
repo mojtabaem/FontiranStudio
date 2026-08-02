@@ -14,6 +14,13 @@
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body class="page-canvas">
+    <div class="viewport-gate" id="viewport-gate" role="alertdialog" aria-modal="true" aria-labelledby="viewport-gate-text">
+        <div class="viewport-gate-card" dir="rtl">
+            <p class="viewport-gate-text" id="viewport-gate-text">
+                نسخه کنونی استودیو فقط از دسکتاپ پشتیبانی می‌کند. لطفاً پنجره را بزرگ‌تر کنید.
+            </p>
+        </div>
+    </div>
     <div class="app" id="app">
         <section class="canvas" id="canvas">
             <!-- 
@@ -110,30 +117,20 @@
                     <div class="side-panel-content">
                         <div class="panel-content-inner">
                             <!-- 
-                                4 lists of properties based on selected object type 
-                                1. not selected => empty state
-                                2. text => text properties
-                                3. shape => shape properties
-                                shape and text has common properties and different properties
-                                common properties:
-                                -position
-                                    -- rotation
-                                    -- size
-                                    -- position
-                                - fill
-                                    -- color
-                                    -- opacity
-                                - stroke
-                                    -- width
-                                    -- color
-
-                                4. multiple objects => show all properties of all selected objects but values are "mix" and if user change value of any property, it will be applied to all selected objects
+                                no object selected => empty state
+                                multiple objects => show all properties of all selected objects but values are "mix" and if user change value of any property, it will be applied to all selected objects
+                                position and appearance properties are common  for text and shape
+                                typography is only for text
+                                for all input fields apply this on enter, set delay for auto apply if change wait for example 1sec if there is no change apply the value
+                                When handling numeric input, automatically normalize Persian and Arabic numerals to standard English digits
                             -->
                                 <div class="panel-group panel-position">
-                                    <div class="panel-group-header">Position</div>
+                                    <div class="panel-group-header">
+                                        <div class="text">Position</div>
+                                    </div>
                                     <div class="panel-group-content">
                                         <div class="panel-row">
-                                            <div class="col-8">
+                                            <div class="col-large">
                                                 <div class="input-group">
                                                     <div class="input-control input-size-s input-field input-number input-control-position-x">
                                                         <div class="label">
@@ -169,7 +166,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-small">
                                                 <div class="input-control input-size-s input-field input-number input-control-rotation">
                                                     <div class="label">
                                                         <div class="icon" data-svg="assets/icon/s-angle.svg"></div>
@@ -190,8 +187,9 @@
                                             </div>
                                         </div>
                                         <div class="panel-row">
-                                            <div class="col-8">
+                                            <div class="col-large">
                                                 <div class="input-group">
+                                                    <!-- only allow 1 decimal point, even if user resize the object directly in canvas Round it to 1 decimal point -->
                                                     <div class="input-control input-size-s input-field input-number input-control-width">
                                                         <div class="label">
                                                             <div class="text">Width</div>
@@ -226,14 +224,25 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-4">
+                                            <div class="col-small">
                                                 <div class="input-group">
                                                     <div class="input-control input-size-s input-field input-number input-control-width-percentage">
                                                         <div class="label">
                                                             <div class="text">%</div>
                                                         </div>
+                                                        <!-- 
+                                                            This is not aspect ratio its size but in percentage
+                                                            this is for resize object in canvas not for text size user enter percentage and convert it to px
+                                                            only allow 1 decimal point, even if user resize the object directly in canvas Round it to 1 decimal point
+                                                            if user change this after apply it get back to 100% (
+                                                            example: shape size is 50x50px and % size is 100x100% user type 150 in x axis:
+                                                            a: aspect ratio is lock = change height to 75px and width to 75px and 100x100% again
+                                                            b: aspect ratio is not lock = change height to 50px and width to 75px and 100x100% again)
+                                                            if selected object is text dissable this
+                                                        -->
                                                         <div class="input-wrapper">
                                                             <input 
+                                                            value="100"
                                                             class="input input-width-percentage"
                                                             id="width-percentage"
                                                             type="number"
@@ -250,6 +259,7 @@
                                                         </div>
                                                         <div class="input-wrapper">
                                                             <input 
+                                                            value="100"
                                                             class="input input-height-percentage"
                                                             id="height-percentage"
                                                             type="number"
@@ -269,8 +279,323 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="panel-group panel-appearance"></div>
-                                <div class="panel-group panel-typography"></div>
+                                <div class="panel-group panel-appearance">
+                                    <div class="panel-group-header">
+                                        <div class="text">Appearance</div>
+                                    </div>
+                                    <div class="panel-group-content">
+                                        <div class="panel-row">
+                                            <div class="col-large">
+                                                <div class="input-control input-size-s input-field input-color input-control-fill-color">
+                                                    <div class="label">
+                                                        <div class="text">Fill</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <label class="input-color-swatch" style="--input-color-value: #FF0000" data-tippy-content="انتخاب رنگ">
+                                                            <input
+                                                            class="input-color-native"
+                                                            id="fill-color-native"
+                                                            type="color"
+                                                            value="#000"
+                                                            aria-label="انتخاب رنگ پرشدگی">
+                                                        </label>
+                                                        <input
+                                                        class="input input-fill-color input-color-hex"
+                                                        id="fill-color"
+                                                        type="text"
+                                                        inputmode="text"
+                                                        maxlength="6"
+                                                        autocomplete="off"
+                                                        spellcheck="false"
+                                                        value="000">
+                                                        <button type="button" class="input-color-eyedropper" id="fill-color-eyedropper" data-tippy-content="نمونه‌گیری رنگ از بوم" aria-label="نمونه‌گیری رنگ از بوم">
+                                                            <div class="icon" data-svg="assets/icon/color-picker.svg"></div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-small">
+                                                <div class="input-control input-size-s input-field input-number input-control-fill-opacity">
+                                                    <div class="label">
+                                                        <div class="text">Opacity</div>
+                                                    </div>
+                                                    <!-- 
+                                                        dont allow decimal values
+                                                        dont allow negative values
+                                                        dont allow values greater than 100
+                                                    -->
+                                                    <div class="input-wrapper">
+                                                        <input 
+                                                        class="input input-fill-opacity"
+                                                        id="fill-opacity"
+                                                        type="text"
+                                                        inputmode="numeric"
+                                                        value="100"
+                                                        min="0"
+                                                        max="100"
+                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                                        <div class="input-suffix">%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-row">
+                                            <div class="col-large">
+                                                <div class="input-control input-size-s input-field input-color input-control-stroke-color">
+                                                    <div class="label">
+                                                        <div class="text">Stroke</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <label class="input-color-swatch" style="--input-color-value: #008200" data-tippy-content="انتخاب رنگ">
+                                                            <input
+                                                            class="input-color-native"
+                                                            id="stroke-color-native"
+                                                            type="color"
+                                                            value="#000"
+                                                            aria-label="انتخاب رنگ خط دور">
+                                                        </label>
+                                                        <input
+                                                        class="input input-stroke-color input-color-hex"
+                                                        id="stroke-color"
+                                                        type="text"
+                                                        inputmode="text"
+                                                        maxlength="6"
+                                                        autocomplete="off"
+                                                        spellcheck="false"
+                                                        value="000">
+                                                        <button type="button" class="input-color-eyedropper" id="stroke-color-eyedropper" data-tippy-content="نمونه‌گیری رنگ از بوم" aria-label="نمونه‌گیری رنگ از بوم">
+                                                            <div class="icon" data-svg="assets/icon/color-picker.svg"></div>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-small">
+                                                <div class="input-control input-size-s input-field input-number input-control-stroke-width">
+                                                    <div class="label">
+                                                        <div class="text">Width</div>
+                                                    </div>
+                                                    <!--
+                                                        dont allow decimal values
+                                                        dont allow negative values
+                                                        dont allow values greater than 100
+                                                      -->
+                                                    <div class="input-wrapper">
+                                                        <input 
+                                                        class="input input-stroke-width"
+                                                        id="stroke-width"
+                                                        type="text"
+                                                        inputmode="numeric"
+                                                        value="0"
+                                                        min="0"
+                                                        max="100"
+                                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                                                        <div class="input-suffix">px</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel-group panel-typography">
+                                    <div class="panel-group-header">
+                                        <div class="text">Typography</div>
+                                    </div>
+                                    <div class="panel-group-content">
+                                        <div class="panel-row">
+                                            <div class="col-full">
+                                                <div class="input-control input-size-s input-select input-control-font-family">
+                                                    <div class="label">
+                                                        <div class="text">Font Family</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <select class="input input-font-family" id="font-family">
+                                                            <option value="1">Font Family 1</option>
+                                                            <option value="2">Font Family 2</option>
+                                                            <option value="3">Font Family 3</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-row">
+                                            <div class="col-half">
+                                                <div class="input-control input-size-s input-select input-control-font-weight">
+                                                    <div class="label">
+                                                        <div class="text">Weight</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <select class="input input-font-weight" id="font-weight">
+                                                            <option value="1">Regular</option>
+                                                            <option value="2">Medium</option>
+                                                            <option value="3">Bold</option>
+                                                            <option value="4">Extra Bold</option>
+                                                            <option value="5">Black</option>
+                                                            <option value="6">Extra Black</option>
+                                                            <option value="7">Thin</option>
+                                                            <option value="8">Extra Thin</option>
+                                                            <option value="9">Light</option>
+                                                            <option value="10">Extra Light</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-half">
+                                                <div class="input-control input-size-s input-field input-number input-control-font-size">
+                                                    <div class="label">
+                                                        <div class="text">Size</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <input class="input input-font-size" id="font-size" type="number" inputmode="numeric" step="1" pattern="[0-9]*" min="0" value="16">
+                                                        <div class="input-suffix">px</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-row">
+                                            <div class="col-half">
+                                                <div class="input-control input-size-s input-field input-number input-control-line-height">
+                                                    <div class="label">
+                                                        <div class="text">Line Height</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <!-- change based on font and fontsize always set default value of that font in placeholder -->
+                                                        <input class="input input-line-height" id="line-height" type="number" inputmode="numeric" step="1" pattern="[0-9]*" min="0" value="24" placeholder="24">
+                                                        <div class="input-suffix">px</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-half">
+                                                <div class="input-control input-size-s input-field input-number input-control-letter-spacing">
+                                                    <div class="label">
+                                                        <div class="text">Letter Spacing</div>
+                                                    </div>
+                                                    <div class="input-wrapper">
+                                                        <input 
+                                                            class="input input-letter-spacing" 
+                                                            id="letter-spacing" 
+                                                            type="number" 
+                                                            inputmode="numeric" 
+                                                            step="1"
+                                                            pattern="[0-9]*"
+                                                            min="0"
+                                                            value="0"
+                                                            placeholder="0"
+                                                        >
+                                                        <div class="input-suffix">px</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- this is base on selected font and its features -->
+                                        <div class="panel-sub-group typography-sub-category">
+                                            <div class="sub-group-header">
+                                                <div class="text">Variable</div>
+                                            </div>
+                                            <div class="sub-group-content">
+                                                <div class="sub-group-row panel-row">
+                                                    <div class="input-control input-size-s input-slider" data-slider>
+                                                        <div class="input-slider-header">
+                                                            <div class="label">
+                                                                <div class="text">Weight</div>
+                                                            </div>
+                                                            <!-- optional: remove .input-slider-value to hide typed input -->
+                                                            <!-- min/max/step live on the range below and are mirrored here by js -->
+                                                            <div class="input-wrapper input-slider-value">
+                                                                <input
+                                                                    class="input input-slider-number"
+                                                                    id="slider-weight"
+                                                                    type="number"
+                                                                    inputmode="numeric"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-slider-track">
+                                                            <input
+                                                                class="input-slider-range"
+                                                                type="range"
+                                                                min="100"
+                                                                max="900"
+                                                                step="1"
+                                                                value="400"
+                                                                aria-label="Weight"
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="sub-group-row panel-row">
+                                                    <div class="input-control input-size-s input-slider" data-slider>
+                                                        <div class="input-slider-header">
+                                                            <div class="label">
+                                                                <div class="text">Dots</div>
+                                                            </div>
+                                                            <!-- optional: remove .input-slider-value to hide typed input -->
+                                                            <!-- min/max/step live on the range below and are mirrored here by js -->
+                                                            <div class="input-wrapper input-slider-value">
+                                                                <input
+                                                                    class="input input-slider-number"
+                                                                    id="slider-dots"
+                                                                    type="number"
+                                                                    inputmode="decimal"
+                                                                >
+                                                            </div>
+                                                        </div>
+                                                        <div class="input-slider-track">
+                                                            <input
+                                                                class="input-slider-range"
+                                                                type="range"
+                                                                min="0"
+                                                                max="4"
+                                                                step="1"
+                                                                value="1"
+                                                                aria-label="Dots"
+                                                            >
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="panel-sub-group typography-sub-category">
+                                            <div class="sub-group-header">
+                                                <div class="text">Stylistic sets</div>
+                                            </div>
+                                            <div class="sub-group-content">
+                                                <div class="sub-group-row panel-row">
+                                                    <label class="input-control input-size-s input-switch" for="switch-ss01">
+                                                        <span class="label">
+                                                            <span class="text">Switch Label</span>
+                                                        </span>
+                                                        <input
+                                                            class="input-switch-input"
+                                                            id="switch-ss01"
+                                                            type="checkbox"
+                                                            checked
+                                                        >
+                                                        <span class="input-switch-track" aria-hidden="true">
+                                                            <span class="input-switch-thumb"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                                <div class="sub-group-row panel-row">
+                                                    <label class="input-control input-size-s input-switch" for="switch-ss02">
+                                                        <span class="label">
+                                                            <span class="text">Switch Label</span>
+                                                        </span>
+                                                        <input
+                                                            class="input-switch-input"
+                                                            id="switch-ss02"
+                                                            type="checkbox"
+                                                        >
+                                                        <span class="input-switch-track" aria-hidden="true">
+                                                            <span class="input-switch-thumb"></span>
+                                                        </span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                
                         </div>
                     </div>
                 </div>
@@ -378,8 +703,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                         </div>
                     </div>
@@ -717,5 +1040,7 @@
     <script src="js/side-panels.js"></script>
     <script src="js/layers.js"></script>
     <script src="js/object-selection.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/color-input.js"></script>
 </body>
 </html>

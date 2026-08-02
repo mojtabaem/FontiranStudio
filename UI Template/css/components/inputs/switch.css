@@ -1,0 +1,118 @@
+:root {
+    --switch-on-bg: var(--c-gray-900);
+    --switch-off-bg: var(--c-gray-300);
+    --switch-thumb-bg: #fff;
+    --switch-label-on: var(--c-text-primary);
+    --switch-label-off: var(--c-gray-400);
+}
+
+.input-control.input-switch {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    cursor: pointer;
+}
+
+.input-control.input-switch .label {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    height: auto;
+    font-size: var(--label-font-size);
+    color: var(--switch-label-on);
+    transition: color 200ms ease;
+}
+
+/* Sit over the track only — avoids scroll jumps from a misplaced absolute checkbox */
+.input-control.input-switch .input-switch-input {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    z-index: 1;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    margin: 0;
+    padding: 0;
+    border: 0;
+    opacity: 0;
+    cursor: pointer;
+    appearance: none;
+    translate: 0 -50%;
+}
+
+.input-switch-track {
+    position: relative;
+    flex-shrink: 0;
+    width: var(--switch-width);
+    height: var(--switch-height);
+    border-radius: 999px;
+    background-color: var(--switch-off-bg);
+    transition: background-color 200ms ease, box-shadow 200ms ease;
+}
+
+.input-switch-thumb {
+    position: absolute;
+    top: 50%;
+    left: var(--switch-pad);
+    width: var(--switch-thumb-size);
+    height: var(--switch-thumb-size);
+    border-radius: 999px;
+    background-color: var(--switch-thumb-bg);
+    box-shadow: 0 0 0 1px rgb(from var(--c-gray-400) r g b / 0.35);
+    translate: 0 -50%;
+    transition: left 200ms ease, box-shadow 200ms ease;
+    pointer-events: none;
+}
+
+/* on */
+.input-control.input-switch:has(.input-switch-input:checked) .input-switch-track {
+    background-color: var(--switch-on-bg);
+}
+
+.input-control.input-switch:has(.input-switch-input:checked) .input-switch-thumb {
+    left: calc(100% - var(--switch-thumb-size) - var(--switch-pad));
+    box-shadow: none;
+}
+
+.input-control.input-switch:has(.input-switch-input:checked) .label {
+    color: var(--switch-label-on);
+}
+
+/* off — label lightens with the track */
+.input-control.input-switch:has(.input-switch-input:not(:checked)) .label {
+    color: var(--switch-label-off);
+}
+
+/* box-shadow focus ring — outline can grow scrollHeight inside the panel */
+.input-control.input-switch:has(.input-switch-input:focus-visible) .input-switch-track {
+    box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--c-green-500);
+}
+
+/* hover — off */
+.input-control.input-switch:hover:has(.input-switch-input:not(:checked):not(:disabled)) .input-switch-track {
+    background-color: var(--c-gray-400);
+}
+
+.input-control.input-switch:hover:has(.input-switch-input:not(:checked):not(:disabled)) .label {
+    color: var(--c-gray-600);
+}
+
+/* hover — on */
+.input-control.input-switch:hover:has(.input-switch-input:checked:not(:disabled)) .input-switch-track {
+    background-color: var(--c-gray-800);
+}
+
+.input-control.input-switch.is-disabled,
+.input-control.input-switch:has(.input-switch-input:disabled) {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.input-control.input-switch.is-disabled .input-switch-input,
+.input-control.input-switch:has(.input-switch-input:disabled) .input-switch-input {
+    cursor: not-allowed;
+}

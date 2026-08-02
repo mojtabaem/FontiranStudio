@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { type Tool, MAX_ZOOM, MIN_ZOOM } from '@/document/types';
+import { clampPan } from '@/canvas/coords';
 
 export type ExportTarget = 'design' | string;
 export type DialogName = 'login' | 'profile' | 'export';
@@ -9,6 +10,8 @@ export interface EditorState {
   zoom: number;
   panX: number;
   panY: number;
+  viewportWidth: number;
+  viewportHeight: number;
   isSpacePanning: boolean;
   editingTextId: string | null;
   pathEditObjectId: string | null;
@@ -19,10 +22,12 @@ export interface EditorState {
   aspectRatioLocked: boolean;
 
   setTool: (tool: Tool) => void;
+  setViewportSize: (width: number, height: number) => void;
   setZoom: (zoom: number) => void;
   zoomBy: (delta: number) => void;
   setPan: (panX: number, panY: number) => void;
   panBy: (dx: number, dy: number) => void;
+  setCamera: (partial: { zoom?: number; panX?: number; panY?: number }) => void;
   setSpacePanning: (active: boolean) => void;
   setEditingTextId: (id: string | null) => void;
   setPathEditObjectId: (id: string | null) => void;
@@ -44,11 +49,29 @@ function clampZoom(zoom: number): number {
   return Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom));
 }
 
+function withClampedCamera(
+  state: Pick<
+    EditorState,
+    'zoom' | 'panX' | 'panY' | 'viewportWidth' | 'viewportHeight'
+  >,
+  next: Partial<Pick<EditorState, 'zoom' | 'panX' | 'panY'>>,
+) {
+  const zoom = clampZoom(next.zoom ?? state.zoom);
+  const panX = next.panX ?? state.panX;
+  const panY = next.panY ?? state.panY;
+  const vw = state.viewportWidth || 1;
+  const vh = state.viewportHeight || 1;
+  const clamped = clampPan(panX, panY, zoom, vw, vh);
+  return { zoom, panX: clamped.panX, panY: clamped.panY };
+}
+
 export const useEditorStore = create<EditorState>((set, get) => ({
   tool: 'move',
   zoom: 1,
   panX: 0,
   panY: 0,
+  viewportWidth: 0,
+  viewportHeight: 0,
   isSpacePanning: false,
   editingTextId: null,
   pathEditObjectId: null,
@@ -64,13 +87,36 @@ export const useEditorStore = create<EditorState>((set, get) => ({
 
   setTool: (tool) => set({ tool }),
 
-  setZoom: (zoom) => set({ zoom: clampZoom(zoom) }),
+  setViewportSize: (width, height) => {
+    const w = Math.max(1, Math.round(width));
+    const h = Math.max(1, Math.round(height));
+    set((s) => {
+      if (s.viewportWidth === w && s.viewportHeight === h) return s;
+      return {
+        viewportWidth: w,
+        viewportHeight: h,
+        ...withClampedCamera(
+          { ...s, viewportWidth: w, viewportHeight: h },
+          {},
+        ),
+      };
+    });
+  },
 
-  zoomBy: (delta) => set((s) => ({ zoom: clampZoom(s.zoom + delta) })),
+  setZoom: (zoom) =>
+    set((s) => withClampedCamera(s, { zoom })),
 
-  setPan: (panX, panY) => set({ panX, panY }),
+  zoomBy: (delta) =>
+    set((s) => withClampedCamera(s, { zoom: s.zoom + delta })),
 
-  panBy: (dx, dy) => set((s) => ({ panX: s.panX + dx, panY: s.panY + dy })),
+  setPan: (panX, panY) =>
+    set((s) => withClampedCamera(s, { panX, panY })),
+
+  panBy: (dx, dy) =>
+    set((s) => withClampedCamera(s, { panX: s.panX + dx, panY: s.panY + dy })),
+
+  setCamera: (partial) =>
+    set((s) => withClampedCamera(s, partial)),
 
   setSpacePanning: (active) => {
     set({ isSpacePanning: active });

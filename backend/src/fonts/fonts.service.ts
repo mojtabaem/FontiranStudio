@@ -130,6 +130,11 @@ export class FontsService implements OnModuleInit {
     }
 
     this.logger.log(`Scanning fonts in ${dir}`);
+    // Mock catalog is folder-driven: rebuild from disk each boot so renames/grouping stay correct.
+    await this.prisma.userFont.deleteMany();
+    await this.prisma.fontFace.deleteMany();
+    await this.prisma.fontFamily.deleteMany();
+
     const files = this.collectFontFiles(dir);
     const parsed: ParsedFace[] = [];
 
@@ -237,6 +242,29 @@ export class FontsService implements OnModuleInit {
     return results;
   }
 
+  private readEnglishName(
+    font: opentype.Font,
+    key: string,
+  ): string | undefined {
+    const withHelper = font as opentype.Font & {
+      getEnglishName?: (name: string) => string | undefined;
+    };
+    const fromHelper = withHelper.getEnglishName?.(key);
+    if (fromHelper) return fromHelper;
+
+    const names = font.names as unknown as Record<string, unknown>;
+    const direct = names[key] as { en?: string } | undefined;
+    if (direct?.en) return direct.en;
+
+    // opentype.js may nest platform records (e.g. names.windows.fontFamily.en)
+    for (const value of Object.values(names)) {
+      if (!value || typeof value !== 'object') continue;
+      const nested = (value as Record<string, { en?: string }>)[key];
+      if (nested?.en) return nested.en;
+    }
+    return undefined;
+  }
+
   private parseFontFile(filePath: string): ParsedFace {
     const buffer = readFileSync(filePath);
     const ab = buffer.buffer.slice(
@@ -245,18 +273,18 @@ export class FontsService implements OnModuleInit {
     );
     const font = opentype.parse(ab);
 
-    const names = font.names as unknown as Record<
-      string,
-      { en?: string } | undefined
-    >;
     const familyName =
-      names.fontFamily?.en ||
-      names.preferredFamily?.en ||
+      this.readEnglishName(font, 'preferredFamily') ||
+      this.readEnglishName(font, 'fontFamily') ||
+      path
+        .basename(filePath, path.extname(filePath))
+        .replace(/[-_]?(thin|extralight|light|regular|medium|semibold|demibold|bold|extrabold|black|heavy|italic|variable|wght|\[[^\]]+\])$/i, '')
+        .replace(/[-_]+$/g, '') ||
       path.basename(filePath, path.extname(filePath));
 
     const subfamily =
-      names.fontSubfamily?.en ||
-      names.preferredSubfamily?.en ||
+      this.readEnglishName(font, 'preferredSubfamily') ||
+      this.readEnglishName(font, 'fontSubfamily') ||
       'Regular';
 
     const fvar = (font.tables as { fvar?: { axes?: Array<{

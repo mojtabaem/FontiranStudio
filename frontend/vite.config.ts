@@ -20,7 +20,7 @@ export default defineConfig({
     },
   },
   optimizeDeps: {
-    exclude: ['harfbuzzjs'],
+    include: ['harfbuzzjs/hb.js', 'harfbuzzjs/hbjs.js'],
   },
   assetsInclude: ['**/*.wasm'],
 });

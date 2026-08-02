@@ -2,27 +2,43 @@ import {
   useCallback,
   useEffect,
   useRef,
+  useState,
   type PointerEvent as ReactPointerEvent,
   type ReactNode,
   type RefObject,
 } from 'react';
 import { useEditorStore } from '@/editor/editorStore';
 import { MAX_ZOOM, MIN_ZOOM } from '@/document/types';
+import {
+  getPanEdges,
+  zoomTowardCursor,
+  type PanEdges,
+} from '@/canvas/coords';
 
 export interface ViewportProps {
   children: ReactNode;
   viewportRef?: RefObject<HTMLDivElement | null>;
 }
 
+const EMPTY_EDGES: PanEdges = {
+  left: false,
+  right: false,
+  top: false,
+  bottom: false,
+};
+
 export function Viewport({ children, viewportRef }: ViewportProps) {
   const localRef = useRef<HTMLDivElement>(null);
   const tool = useEditorStore((s) => s.tool);
   const zoom = useEditorStore((s) => s.zoom);
-  const setZoom = useEditorStore((s) => s.setZoom);
   const panX = useEditorStore((s) => s.panX);
   const panY = useEditorStore((s) => s.panY);
+  const viewportWidth = useEditorStore((s) => s.viewportWidth);
+  const viewportHeight = useEditorStore((s) => s.viewportHeight);
   const setPan = useEditorStore((s) => s.setPan);
   const panBy = useEditorStore((s) => s.panBy);
+  const setCamera = useEditorStore((s) => s.setCamera);
+  const setViewportSize = useEditorStore((s) => s.setViewportSize);
   const isSpacePanning = useEditorStore((s) => s.isSpacePanning);
   const pathEditObjectId = useEditorStore((s) => s.pathEditObjectId);
 
@@ -30,6 +46,8 @@ export function Viewport({ children, viewportRef }: ViewportProps) {
   const dragOrigin = useRef<{ x: number; y: number; panX: number; panY: number } | null>(
     null,
   );
+
+  const [edges, setEdges] = useState<PanEdges>(EMPTY_EDGES);
 
   const canPan = tool === 'hand' || isSpacePanning;
 
@@ -43,18 +61,52 @@ export function Viewport({ children, viewportRef }: ViewportProps) {
     [viewportRef],
   );
 
+  useEffect(() => {
+    const el = localRef.current;
+    if (!el) return;
+
+    const publish = () => {
+      const rect = el.getBoundingClientRect();
+      setViewportSize(rect.width, rect.height);
+    };
+
+    publish();
+    const ro = new ResizeObserver(publish);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [setViewportSize]);
+
+  useEffect(() => {
+    if (!viewportWidth || !viewportHeight) return;
+    setEdges(getPanEdges(panX, panY, zoom, viewportWidth, viewportHeight));
+  }, [panX, panY, zoom, viewportWidth, viewportHeight]);
+
   const onWheel = useCallback(
     (e: WheelEvent) => {
       e.preventDefault();
+      const el = localRef.current;
+      if (!el) return;
+      const rect = el.getBoundingClientRect();
+
       if (e.ctrlKey || e.metaKey) {
         const delta = -e.deltaY * 0.0015;
-        const next = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom + delta));
-        setZoom(next);
+        const nextZoom = Math.min(MAX_ZOOM, Math.max(MIN_ZOOM, zoom + delta));
+        const cursorX = e.clientX - rect.left;
+        const cursorY = e.clientY - rect.top;
+        const camera = zoomTowardCursor(
+          nextZoom,
+          zoom,
+          cursorX,
+          cursorY,
+          panX,
+          panY,
+        );
+        setCamera(camera);
       } else {
         panBy(-e.deltaX, -e.deltaY);
       }
     },
-    [zoom, setZoom, panBy],
+    [zoom, panX, panY, setCamera, panBy],
   );
 
   useEffect(() => {
@@ -99,6 +151,10 @@ export function Viewport({ children, viewportRef }: ViewportProps) {
     canPan ? 'is-panning' : '',
     isSpacePanning ? 'is-space-panning' : '',
     pathEditObjectId ? 'is-path-editing' : '',
+    edges.left ? 'is-edge-left' : '',
+    edges.right ? 'is-edge-right' : '',
+    edges.top ? 'is-edge-top' : '',
+    edges.bottom ? 'is-edge-bottom' : '',
   ]
     .filter(Boolean)
     .join(' ');
@@ -114,6 +170,12 @@ export function Viewport({ children, viewportRef }: ViewportProps) {
       onPointerCancel={onPointerUp}
     >
       {children}
+      <div className="canvas-edge-veil" aria-hidden="true">
+        <div className="edge-left" />
+        <div className="edge-right" />
+        <div className="edge-top" />
+        <div className="edge-bottom" />
+      </div>
     </div>
   );
 }

@@ -15,12 +15,25 @@
     padding: var(--input-inner-padding);
     color: var(--c-text-primary);
 }
-.input-control.input-field .input:hover {
+.input-control.input-field:not(.is-disabled) .input:hover:not(:disabled) {
     box-shadow: inset 0 0 0 1px var(--c-gray-400);
 }
-.input-control.input-field .input:focus-visible,
-.input-control.input-field .input:focus {
+.input-control.input-field:not(.is-disabled) .input:focus-visible:not(:disabled),
+.input-control.input-field:not(.is-disabled) .input:focus:not(:disabled) {
     box-shadow: inset 0 0 0 1px var(--c-green-500);
+}
+.input-control.input-field.is-disabled .input,
+.input-control.input-field .input:disabled {
+    background-color: var(--c-gray-100);
+    color: var(--c-gray-500);
+    box-shadow: none;
+}
+.input-control.input-field.is-disabled .input-suffix,
+.input-control.input-field.is-disabled .input-prefix,
+.input-control.input-field:has(.input:disabled) .input-suffix,
+.input-control.input-field:has(.input:disabled) .input-prefix {
+    background-color: var(--c-gray-100);
+    color: var(--c-gray-400);
 }
 .input-group .input-control.input-field .input {
     border-radius: 0;

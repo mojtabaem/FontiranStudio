@@ -2,7 +2,16 @@
     --pattern-size: 20px;
     --pattern-color: var(--c-bg-pattern);
 }
+
 body.page-canvas {
+    background-color: var(--c-bg);
+    background-image: none;
+}
+
+/* Pattern lives on the artboard so it pans/zooms with the camera */
+.canvas-artboard {
+    background-color: var(--c-bg);
     background-image: radial-gradient(circle, var(--pattern-color) 2px, transparent 2px);
     background-size: var(--pattern-size) var(--pattern-size);
+    background-position: 0 0;
 }

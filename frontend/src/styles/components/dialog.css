@@ -12,7 +12,8 @@
 */
 
 :root {
-    --dialog-overlay-color: rgba(255, 255, 255, 0.2);
+    /* Frosted light veil — must stay visible on --c-bg (#F5F5F5) */
+    --dialog-overlay-color: rgba(245, 245, 245, 0.72);
     --dialog-width: 400px;
     --dialog-radius: var(--br-xl);
     --dialog-border-color: var(--panel-border-color);
@@ -22,8 +23,9 @@
     --dialog-header-btn-size: 32px;
 }
 
-/* Native shell — keep chrome-free so .dialog-content owns the look */
-.dialog {
+/* Native <dialog> shell only — keep chrome-free so .dialog-content owns the look.
+   Do NOT apply these full-viewport rules to Radix .dialog-panel. */
+dialog.dialog {
     margin: 0;
     padding: 0;
     border: none;
@@ -34,27 +36,37 @@
     height: 100%;
 }
 
-.dialog[open] {
+dialog.dialog[open] {
     display: grid;
     place-items: center;
 }
 
 /* Radix: Dialog.Overlay — native: dialog::backdrop */
 .dialog-overlay,
-.dialog::backdrop {
+dialog.dialog::backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
     background-color: var(--dialog-overlay-color);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
 }
 
 .dialog-panel {
-    position: relative;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 901;
     width: min(var(--dialog-width), calc(100vw - 32px));
+    height: auto;
     max-height: calc(100vh - 32px);
     overflow: auto;
     padding: 0;
     border-radius: var(--dialog-radius);
     border: 1px solid var(--dialog-border-color);
     box-shadow: var(--dialog-shadow);
-
+    outline: none;
 }
 .dialog-content {
     position: relative;

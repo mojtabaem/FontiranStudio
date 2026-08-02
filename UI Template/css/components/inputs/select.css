@@ -1,0 +1,126 @@
+.input-control.input-select select.input {
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    font-size: var(--input-font-size);
+    background-color: var(--c-gray-200);
+    padding: var(--input-inner-padding);
+    padding-inline-end: calc(
+        var(--input-select-arrow-size) + var(--input-select-arrow-gap) * 2
+    );
+    color: var(--c-text-primary);
+    cursor: pointer;
+}
+
+.input-control.input-select:not(.is-disabled) select.input:hover:not(:disabled) {
+    box-shadow: inset 0 0 0 1px var(--c-gray-400);
+}
+
+.input-control.input-select:not(.is-disabled) select.input:focus-visible:not(:disabled),
+.input-control.input-select:not(.is-disabled) select.input:focus:not(:disabled) {
+    box-shadow: inset 0 0 0 1px var(--c-green-500);
+}
+
+.input-control.input-select.is-disabled select.input,
+.input-control.input-select select.input:disabled {
+    background-color: var(--c-gray-100);
+    color: var(--c-gray-500);
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+.input-control.input-select.is-disabled .input-wrapper::after,
+.input-control.input-select:has(select.input:disabled) .input-wrapper::after {
+    background-color: var(--c-gray-400);
+    opacity: 0.55;
+}
+
+.input-control.input-select.is-disabled .input-suffix,
+.input-control.input-select.is-disabled .input-prefix,
+.input-control.input-select:has(select.input:disabled) .input-suffix,
+.input-control.input-select:has(select.input:disabled) .input-prefix {
+    background-color: var(--c-gray-100);
+    color: var(--c-gray-400);
+}
+
+/* custom arrow — native arrow already removed in common.css */
+.input-control.input-select .input-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: var(--input-select-arrow-gap);
+    translate: 0 -50%;
+    width: var(--input-select-arrow-size);
+    height: var(--input-select-arrow-size);
+    pointer-events: none;
+    background-color: var(--c-gray-600);
+    mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5.5 8.55L12 15.05L18.5 8.55' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M5.5 8.55L12 15.05L18.5 8.55' stroke='black' stroke-width='1.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    -webkit-mask-size: contain;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+}
+
+/* suffix on the right — keep arrow just left of it */
+.input-control.input-select:has(.input-suffix) .input-wrapper::after {
+    right: calc(2px + var(--input-affix-width) + var(--input-select-arrow-gap));
+}
+
+.input-control.input-select:has(.input-suffix) select.input {
+    padding-inline-end: calc(
+        2px
+        + var(--input-affix-width)
+        + var(--input-select-arrow-size)
+        + var(--input-select-arrow-gap) * 2
+    );
+}
+
+/* prefix on the left — room for prefix text/icon */
+.input-control.input-select:has(.input-prefix) select.input {
+    padding-inline-start: calc(2px + var(--input-affix-width));
+}
+
+.input-control.input-select .input-suffix,
+.input-control.input-select .input-prefix {
+    position: absolute;
+    height: calc(var(--input-height) - 4px);
+    line-height: calc(var(--input-height) - 4px);
+    width: fit-content;
+    min-width: 20px;
+    padding: 0 4px;
+    top: 2px;
+    white-space: nowrap;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    color: var(--c-gray-600);
+    background-color: var(--c-gray-200);
+    z-index: 1;
+}
+
+.input-control.input-select .input-suffix {
+    right: 2px;
+    border-radius: 0 4px 4px 0;
+}
+
+.input-control.input-select .input-prefix {
+    left: 2px;
+    border-radius: 4px 0 0 4px;
+}
+
+.input-group .input-control.input-select select.input {
+    border-radius: 0;
+}
+
+.input-group .input-control.input-select:first-of-type select.input {
+    border-top-left-radius: var(--input-border-radius);
+    border-bottom-left-radius: var(--input-border-radius);
+}
+
+.input-group .input-control.input-select:last-of-type select.input {
+    border-top-right-radius: var(--input-border-radius);
+    border-bottom-right-radius: var(--input-border-radius);
+}

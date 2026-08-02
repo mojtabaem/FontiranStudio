@@ -18,6 +18,24 @@
     flex-shrink: 0;
     transition: background-color 250ms ease-in-out;
 }
+.input-control.input-type-stepper.is-disabled .input-stepper-wrapper,
+.input-control.input-type-stepper:has(.input:disabled) .input-stepper-wrapper {
+    background-color: var(--c-gray-50);
+    cursor: not-allowed;
+}
+.input-control.input-type-stepper.is-disabled .input,
+.input-control.input-type-stepper .input:disabled {
+    color: var(--c-gray-500);
+    cursor: not-allowed;
+}
+.input-control.input-type-stepper.is-disabled .input-stepper-btn,
+.input-control.input-type-stepper:has(.input:disabled) .input-stepper-btn,
+.input-stepper-btn:disabled,
+.input-stepper-btn.is-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
+}
 .input-stepper-btn-decrement {
     border-top-left-radius: var(--input-border-radius);
     border-bottom-left-radius: var(--input-border-radius);

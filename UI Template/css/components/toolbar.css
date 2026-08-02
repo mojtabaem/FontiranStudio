@@ -16,7 +16,7 @@
     border: 1px solid var(--panel-border-color);
     border-radius: var(--panel-border-radius);
     box-shadow: var(--panel-shadow);
-    transition: all 250ms ease-in-out;
+    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out, transform 250ms ease-in-out;
 }
 .toolbar-inner {
     display: flex;
@@ -87,7 +87,7 @@
     font-size: 15px;
     color: var(--c-text);
     border: 1px solid var(--panel-border-color);
-    transition: all 250ms ease-in-out;
+    transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out, opacity 250ms ease-in-out;
 }
 .toolbar-btn:hover,
 .toolbar-btn:focus {

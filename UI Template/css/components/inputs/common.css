@@ -32,8 +32,36 @@
     --label-margin-large: todo;
 
     --input-group-gap: 3px;
-    
+
     --input-border-color: #d1d1d1;
+
+    --input-select-arrow-size: 14px;
+    --input-select-arrow-size-small: 12px;
+    --input-select-arrow-gap: 4px;
+    --input-affix-width: 28px;
+
+    --slider-track-height: 8px;
+    --slider-track-height-small: 8px;
+    --slider-track-height-large: 10px;
+
+    --slider-thumb-size: 14px;
+    --slider-thumb-size-small: 14px;
+    --slider-thumb-size-large: 16px;
+
+    --slider-value-width: 52px;
+    --slider-value-width-small: 44px;
+    --slider-value-width-large: 60px;
+
+    --switch-width: 36px;
+    --switch-width-small: 28px;
+    --switch-width-large: 44px;
+    --switch-height: 20px;
+    --switch-height-small: 16px;
+    --switch-height-large: 24px;
+    --switch-thumb-size: 16px;
+    --switch-thumb-size-small: 12px;
+    --switch-thumb-size-large: 20px;
+    --switch-pad: 2px;
 }
 
 .input-size-s {
@@ -44,6 +72,13 @@
     --label-margin: var(--label-margin-small);
     --label-height: var(--label-height-small);
     --input-inner-padding: var(--input-inner-padding-small);
+    --input-select-arrow-size: var(--input-select-arrow-size-small);
+    --slider-track-height: var(--slider-track-height-small);
+    --slider-thumb-size: var(--slider-thumb-size-small);
+    --slider-value-width: var(--slider-value-width-small);
+    --switch-width: var(--switch-width-small);
+    --switch-height: var(--switch-height-small);
+    --switch-thumb-size: var(--switch-thumb-size-small);
 }
 .input-group:has(.input-size-s) {
     --input-group-link-size: var(--input-group-link-size-small);
@@ -57,6 +92,12 @@
     --label-height: var(--label-height-large);
     --input-inner-padding: var(--input-inner-padding-large);
     --input-group-link-size: var(--input-group-link-size-large);
+    --slider-track-height: var(--slider-track-height-large);
+    --slider-thumb-size: var(--slider-thumb-size-large);
+    --slider-value-width: var(--slider-value-width-large);
+    --switch-width: var(--switch-width-large);
+    --switch-height: var(--switch-height-large);
+    --switch-thumb-size: var(--switch-thumb-size-large);
 }
 .input-group:has(.input-size-l) {
     --input-group-link-size: var(--input-group-link-size-large);
@@ -82,7 +123,7 @@
     color: inherit;
     line-height: inherit;
     box-shadow: none;
-    transition: all 200ms ease-in-out;
+    transition: box-shadow 200ms ease-in-out, background-color 200ms ease-in-out, color 200ms ease-in-out;
 }
 .input-control input::-webkit-outer-spin-button,
 .input-control input::-webkit-inner-spin-button {
@@ -134,4 +175,37 @@
     flex-direction: row;
     gap: var(--input-group-gap);
     position: relative;
+}
+
+/* ── disabled (shared) ──
+   Use native :disabled on the control, and/or .is-disabled on .input-control.
+*/
+.input-control.is-disabled,
+.input-control:has(:disabled) {
+    cursor: not-allowed;
+}
+.input-control.is-disabled .label,
+.input-control:has(:disabled) .label {
+    color: var(--c-gray-400);
+}
+.input-control.is-disabled input,
+.input-control.is-disabled textarea,
+.input-control.is-disabled select,
+.input-control input:disabled,
+.input-control textarea:disabled,
+.input-control select:disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+}
+.input-control.is-disabled .input-suffix,
+.input-control.is-disabled .input-prefix,
+.input-control:has(:disabled) .input-suffix,
+.input-control:has(:disabled) .input-prefix {
+    color: var(--c-gray-400);
+}
+.input-group-link-btn:disabled,
+.input-group-link-btn.is-disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    pointer-events: none;
 }

@@ -29,8 +29,12 @@ export function Dialog({
     <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
       <RadixDialog.Portal>
         <RadixDialog.Overlay className="dialog-overlay" />
+        {/*
+          Native <dialog> uses class "dialog" as a full-viewport shell.
+          Radix Content is only the panel — never add "dialog" here or it becomes height:100%.
+        */}
         <RadixDialog.Content
-          className={['dialog', 'dialog-panel', className].filter(Boolean).join(' ')}
+          className={['dialog-panel', className].filter(Boolean).join(' ')}
           aria-describedby={undefined}
         >
           <div className="dialog-content">

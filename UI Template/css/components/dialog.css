@@ -167,7 +167,7 @@
     background-blend-mode: hard-light;
     box-shadow: inset 0px 0.75px 0px #FFFFFF;
     color: #000;
-    transition: all 250ms ease;
+    transition: background 250ms ease, color 250ms ease, box-shadow 250ms ease;
 }
 .dialog-export .dialog-header .dialog-btn-close:hover,
 .dialog-export .dialog-header .dialog-btn-close:focus-visible {
